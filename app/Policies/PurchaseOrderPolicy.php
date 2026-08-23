@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\PurchaseOrder;
 use App\Models\User;
+use App\PurchaseOrderStatus;
 use Illuminate\Auth\Access\Response;
 
 class PurchaseOrderPolicy
@@ -25,7 +26,11 @@ class PurchaseOrderPolicy
 
     public function update(User $user, PurchaseOrder $purchaseOrder): bool
     {
-        return $purchaseOrder->created_by === $user->id;
+        return $purchaseOrder->created_by === $user->id
+            && in_array($purchaseOrder->status, [
+                PurchaseOrderStatus::Draft,
+                PurchaseOrderStatus::Pending,
+            ], true);
     }
 
     public function delete(User $user, PurchaseOrder $purchaseOrder): bool
