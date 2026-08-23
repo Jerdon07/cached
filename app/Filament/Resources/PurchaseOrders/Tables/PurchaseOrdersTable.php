@@ -9,6 +9,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -48,15 +49,17 @@ class PurchaseOrdersTable
             ])
             ->filters([
                 TernaryFilter::make('approved_by')
-                ->label('Approval status')
-                ->placeholder('All')
-                ->trueLabel('Approved')
-                ->falseLabel('Not Approved')
-                ->queries(
-                    true: fn (Builder $query) => $query->whereNotNull('approved_by'),
-                    false: fn (Builder $query) => $query->whereNull('approved_by'),
-                    blank: fn (Builder $query) => $query,
-                ),
+                    ->label('Approval status')
+                    ->placeholder('All')
+                    ->trueLabel('Approved')
+                    ->falseLabel('Not Approved')
+                    ->queries(
+                        true: fn (Builder $query) => $query->whereNotNull('approved_by'),
+                        false: fn (Builder $query) => $query->whereNull('approved_by'),
+                        blank: fn (Builder $query) => $query,
+                    ),
+                Filter::make('created_by_me')
+                    ->query(fn (Builder $query) => $query->where('created_by', '=', auth()->user()->id)),
             ])
             ->recordActions(
                 ActionGroup::make([
