@@ -33,6 +33,9 @@ class PurchaseOrderForm
                     ->hidden(),
                 Repeater::make('items')
                     ->relationship('items')
+                    ->hiddenOn('edit')
+                    ->columnSpanFull()
+                    ->columns(3)
                     ->schema([
                         Select::make('product_id')
                             ->relationship(
@@ -79,6 +82,7 @@ class PurchaseOrderForm
 
                                 return Supplier::find($supplier_id)->products()->find($product_id)->pivot->cost_price;
                             })
+                            ->prefix('₱')
                     ]),
                 Textarea::make('notes')
                     ->columnSpanFull(),
