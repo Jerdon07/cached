@@ -6,6 +6,7 @@ use App\Filament\Resources\PurchaseOrders\Pages\CreatePurchaseOrder;
 use App\Filament\Resources\PurchaseOrders\Pages\EditPurchaseOrder;
 use App\Filament\Resources\PurchaseOrders\Pages\ListPurchaseOrders;
 use App\Filament\Resources\PurchaseOrders\Pages\ViewPurchaseOrder;
+use App\Filament\Resources\PurchaseOrders\RelationManagers\ItemsRelationManager;
 use App\Filament\Resources\PurchaseOrders\Schemas\PurchaseOrderForm;
 use App\Filament\Resources\PurchaseOrders\Schemas\PurchaseOrderInfolist;
 use App\Filament\Resources\PurchaseOrders\Tables\PurchaseOrdersTable;
@@ -45,7 +46,7 @@ class PurchaseOrderResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ItemsRelationManager::class,
         ];
     }
 
