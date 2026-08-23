@@ -20,6 +20,7 @@ class PurchaseOrdersTable
     {
         return $table
             ->columns([
+                TextColumn::make('purchaseOrder'),
                 TextColumn::make('supplier.company_name')
                     ->searchable(),
                 TextColumn::make('createdBy.name')
