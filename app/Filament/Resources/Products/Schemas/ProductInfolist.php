@@ -19,7 +19,7 @@ class ProductInfolist
                 TextEntry::make('barcode'),
                 TextEntry::make('category.name'),
                 TextEntry::make('brand.name'),
-                TextEntry::make('unit.abbrevation'),
+                TextEntry::make('unit.abbreviation'),
                 TextEntry::make('selling_price')
                     ->money('PHP'),
                 TextEntry::make('minimum_stock')
