@@ -14,7 +14,7 @@ return new class extends Migration
             $table->enum('status', ['draft', 'pending', 'approved', 'rejected', 'cancelled', 'completed'])->default('draft');
             $table->foreignId('created_by')->nullable()->constrained('users')->restrictOnDelete();
             $table->foreignId('approved_by')->nullable()->constrained('users')->restrictOnDelete();
-            $table->date('approved_at');
+            $table->date('approved_at')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
         });
