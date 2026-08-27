@@ -13,7 +13,7 @@ class GoodsReceiptSeeder extends Seeder
         GoodsReceipt::create([
             'purchase_order_id' => 1,
             'received_date' => now(),
-            'received_by' => 'Hussain Binladen',
+            'received_by' => 1,
             'remarks' => 'nice goods receipt from this purchase order.'
         ]);
     }
