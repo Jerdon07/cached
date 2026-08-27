@@ -20,22 +20,22 @@ class StockTransfer extends Model
 
     public function fromWarehouse(): BelongsTo
     {
-        return $this->belongsTo(Warehouse::class);
+        return $this->belongsTo(Warehouse::class, 'from_warehouse_id');
     }
 
     public function toWarehouse(): BelongsTo
     {
-        return $this->belongsTo(Warehouse::class);
+        return $this->belongsTo(Warehouse::class, 'to_warehouse_id');
     }
 
     public function requestedBy(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'requested_by');
     }
 
     public function approvedBy(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'approved_by');
     }
 
     public function items(): HasMany
