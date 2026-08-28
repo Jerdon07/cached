@@ -15,6 +15,15 @@ class AdministratorPermissionSeeder extends Seeder
 
         $administrator->permissions()->sync(
             Permission::whereIn('name', [
+                /* ADMINISTRATIVE ACTIONS */
+                'view_permissions',
+                'view_any_permissions',
+                'view_roles',
+                'view_any_roles',
+                'created_roles',
+                'update_roles',
+                'delete_roles',
+
                 /* CATALOG */
                 'view_products',
                 'view_any_products',
