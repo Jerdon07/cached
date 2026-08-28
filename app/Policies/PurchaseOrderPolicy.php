@@ -38,21 +38,30 @@ class PurchaseOrderPolicy
         return $purchaseOrder->created_by === $user->id;
     }
 
-    // Purchasing Manager approve
-    public function approve(User $user): bool
+    /* 
+    * Can approve puchase orders with pending status
+    */
+    public function approve(User $user, PurchaseOrder $purchaseOrder): bool
     {
-        return $user->hasPermissionTo('approve_purchase_orders');
+        return $user->hasPermissionTo('approve_purchase_orders')
+            && $purchaseOrder->status === PurchaseOrderStatus::Pending;
     }
 
-    // Purchasing Manager reject
-    public function reject(User $user): bool
+    /* 
+    * Can reject puchase orders with pending status
+    */
+    public function reject(User $user, PurchaseOrder $purchaseOrder): bool
     {
-        return $user->hasPermissionTo('reject_purchase_orders');
+        return $user->hasPermissionTo('reject_purchase_orders')
+            && $purchaseOrder->status === PurchaseOrderStatus::Pending;
     }
 
-    // Purchasing Officer to complete
-    public function complete(User $user): bool
+    /* 
+    * Can approve puchase orders with approved status
+    */
+    public function complete(User $user, PurchaseOrder $purchaseOrder): bool
     {
-        return $user->hasPermissionTo('complete_purchase_orders');
+        return $user->hasPermissionTo('complete_purchase_orders')
+            && $purchaseOrder->status === PurchaseOrderStatus::Approved;
     }
 }
