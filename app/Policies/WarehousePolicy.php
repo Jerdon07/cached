@@ -55,6 +55,6 @@ class WarehousePolicy
 
     public function forceDelete(User $user, Warehouse $warehouse): bool
     {
-        return $user->hasPermissionTo('_force_delete_warehouses');
+        return $user->hasPermissionTo('force_delete_warehouses');
     }
 }
