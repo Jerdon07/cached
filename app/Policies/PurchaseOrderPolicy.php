@@ -26,7 +26,7 @@ class PurchaseOrderPolicy
 
     public function update(User $user, PurchaseOrder $purchaseOrder): bool
     {
-        return $purchaseOrder->created_by === $user->id
+        return $user->hasPermissionTo('update_purchase_orders')
             && in_array($purchaseOrder->status, [
                 PurchaseOrderStatus::Draft,
                 PurchaseOrderStatus::Pending,
@@ -57,11 +57,11 @@ class PurchaseOrderPolicy
     }
 
     /* 
-    * Can approve puchase orders with approved status
+    * Can close puchase orders with approved status
     */
-    public function complete(User $user, PurchaseOrder $purchaseOrder): bool
+    public function close(User $user, PurchaseOrder $purchaseOrder): bool
     {
-        return $user->hasPermissionTo('complete_purchase_orders')
+        return $user->hasPermissionTo('close_purchase_orders')
             && $purchaseOrder->status === PurchaseOrderStatus::Approved;
     }
 }
