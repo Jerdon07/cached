@@ -73,11 +73,11 @@ class PermissionSeeder extends Seeder
             // Purchase Orders
             'approve_purchase_orders',
             'reject_purchase_orders',
-            'send_purchase_orders',
-            'close_purchase_orders',
+            'send_purchase_orders', // I don't know what's the use
+            'close_purchase_orders', // I don't know what's the use
 
             // Goods Receiving
-            'receive_goods',
+            'receive_goods', // I don't know what's the use
 
             // Inventory Adjustments
             // Mirrors the purchase order workflow: draft -> submit -> approve/reject.
