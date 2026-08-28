@@ -17,19 +17,4 @@ class PermissionPolicy
     {
         return $user->hasPermissionTo('view_permissions');
     }
-
-    public function create(User $user): bool
-    {
-        return $user->hasPermissionTo('create_permissions');
-    }
-
-    public function update(User $user, Permission $permission): bool
-    {
-        return $user->hasPermissionTo('update_permissions');
-    }
-
-    public function delete(User $user, Permission $permission): bool
-    {
-        return $user->hasPermissionTo('delete_permissions');
-    }
 }
