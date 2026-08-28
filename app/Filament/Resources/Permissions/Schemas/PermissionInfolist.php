@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\Permissions\Schemas;
 
+use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Str;
 
 class PermissionInfolist
 {
@@ -10,7 +12,8 @@ class PermissionInfolist
     {
         return $schema
             ->components([
-                //
+                TextEntry::make('name')
+                ->formatStateUsing(fn (string $state): string => Str::headline($state))
             ]);
     }
 }

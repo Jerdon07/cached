@@ -15,17 +15,15 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class PermissionResource extends Resource
 {
     protected static ?string $model = Permission::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|UnitEnum|null $navigationGroup = 'Administration';
 
-    public static function form(Schema $schema): Schema
-    {
-        return PermissionForm::configure($schema);
-    }
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Key;
 
     public static function infolist(Schema $schema): Schema
     {
@@ -48,9 +46,7 @@ class PermissionResource extends Resource
     {
         return [
             'index' => ListPermissions::route('/'),
-            'create' => CreatePermission::route('/create'),
             'view' => ViewPermission::route('/{record}'),
-            'edit' => EditPermission::route('/{record}/edit'),
         ];
     }
 }
