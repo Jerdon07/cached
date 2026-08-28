@@ -117,6 +117,10 @@ class PermissionSeeder extends Seeder
 
             // Notifications
             'manage_notifications',
+
+            // Permissions
+            'view_all_permissions',
+            'view_permissions',
         ];
 
         foreach ($customPermissions as $permission) {
