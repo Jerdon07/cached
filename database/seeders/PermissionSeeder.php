@@ -119,7 +119,7 @@ class PermissionSeeder extends Seeder
             'manage_notifications',
 
             // Permissions
-            'view_all_permissions',
+            'view_any_permissions',
             'view_permissions',
         ];
 
