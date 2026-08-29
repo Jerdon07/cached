@@ -27,8 +27,6 @@ class UsersTable
                     ->sortable(),
                 TextColumn::make('email')
                     ->searchable(),
-                TextColumn::make('roles.name')
-                    ->badge(),
             ])
             ->filters([
                 TrashedFilter::make(),
