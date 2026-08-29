@@ -12,6 +12,7 @@ class RoleInfolist
         return $schema
             ->components([
                 TextEntry::make('name'),
+                TextEntry::make('description'),
             ]);
     }
 }
