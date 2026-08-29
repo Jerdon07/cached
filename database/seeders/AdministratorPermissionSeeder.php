@@ -15,15 +15,7 @@ class AdministratorPermissionSeeder extends Seeder
 
         $administrator->permissions()->sync(
             Permission::whereIn('name', [
-                /* ADMINISTRATIVE ACTIONS */
-                'view_permissions',
-                'view_any_permissions',
-                'view_roles',
-                'view_any_roles',
-                'created_roles',
-                'update_roles',
-                'delete_roles',
-
+                
                 /* CATALOG */
                 'view_products',
                 'view_any_products',
@@ -61,57 +53,7 @@ class AdministratorPermissionSeeder extends Seeder
                 'restore_units',
                 'restore_any_units',
 
-                'view_any_users',
-                'view_users',
-                'create_users',
-                'update_users',
-                'delete_users',
-                'delete_any_users',
-                'restore_users',
-                'restore_any_users',
-
-                'view_roles',
-                'view_any_roles',
-                'create_roles',
-                'update_roles',
-                'delete_roles',
-                'delete_any_roles',
-                'restore_roles',
-                'restore_any_roles',
-                
-                'view_suppliers',
-                'view_any_suppliers',
-                'create_suppliers',
-                'update_suppliers',
-                'delete_suppliers',
-                'delete_any_suppliers',
-                'restore_suppliers',
-                'restore_any_suppliers',
-
-                'view_customers',
-                'view_any_customers',
-                'create_customers',
-                'update_customers',
-                'delete_customers',
-                'delete_any_customers',
-                'restore_customers',
-                'restore_any_customers',
-
-                'view_purchase_orders',
-                'view_any_purchase_orders',
-
-                'view_purchase_order_items',
-                'view_any_purchase_order_items',
-                'create_purchase_order_items',
-                'update_purchase_order_items',
-                'delete_purchase_order_items',
-                'delete_any_purchase_order_items',
-                'restore_purchase_order_items',
-                'restore_any_purchase_order_items',
-
-                'view_goods_receipts',
-                'view_goods_receipts',
-
+                /* WAREHOUSING */
                 'view_warehouses',
                 'view_any_warehouses',
                 'create_warehouses',
@@ -130,8 +72,23 @@ class AdministratorPermissionSeeder extends Seeder
                 'restore_warehouse_locations',
                 'restore_any_warehouse_locations',
 
-                'view_stock_movements',
-                'view_any_stock_movements',
+                'view_stock_transfers',
+                'view_any_stock_transfers',
+                'create_stock_transfers',
+                'update_stock_transfers',
+                'delete_stock_transfers',
+                'delete_any_stock_transfers',
+                'restore_stock_transfers',
+                'restore_any_stock_transfers',
+
+                'view_stock_transfer_items',
+                'view_any_stock_transfer_items',
+                'create_stock_transfer_items',
+                'update_stock_transfer_items',
+                'delete_stock_transfer_items',
+                'delete_any_stock_transfer_items',
+                'restore_stock_transfer_items',
+                'restore_any_stock_transfer_items',
 
                 'view_inventory_adjustments',
                 'view_any_inventory_adjustments',
@@ -142,11 +99,81 @@ class AdministratorPermissionSeeder extends Seeder
                 'restore_inventory_adjustments',
                 'restore_any_inventory_adjustments',
 
+                /* INVENTORY */
+
+                /* PURCHASING */
+                'view_suppliers',
+                'view_any_suppliers',
+                'create_suppliers',
+                'update_suppliers',
+                'delete_suppliers',
+                'delete_any_suppliers',
+                'restore_suppliers',
+                'restore_any_suppliers',
+
+                'view_purchase_orders',
+                'view_any_purchase_orders',
+
+                'view_purchase_order_items',
+                'view_any_purchase_order_items',
+
+
+                'view_goods_receipts',
+                'view_goods_receipts',
+
+                /* SALES */
+                'view_customers',
+                'view_any_customers',
+                'create_customers',
+                'update_customers',
+                'delete_customers',
+                'delete_any_customers',
+                'restore_customers',
+                'restore_any_customers',
+
                 'view_sales_orders',
                 'view_sales_orders',
 
                 'view_sales_order_items',
                 'view_sales_order_items',
+
+                /* REPORTS */
+                // Inventory Report
+                // Stock Report
+                // Purchase Report
+                // Sales Report
+                // Supplier Report
+                // Inventory Validation
+                // Stock Variance
+                // Low Stock report
+
+                /* ADMINISTRATION */
+                'view_any_users',
+                'view_users',
+                'create_users',
+                'update_users',
+                'delete_users',
+                'delete_any_users',
+                'restore_users',
+                'restore_any_users',
+
+                'view_roles',
+                'view_any_roles',
+                'created_roles',
+                'update_roles',
+                'delete_roles',
+
+                'view_permissions',
+                'view_any_permissions',
+
+                'create_purchase_order_items',
+                'update_purchase_order_items',
+                'delete_purchase_order_items',
+                'delete_any_purchase_order_items',
+                'restore_purchase_order_items',
+                'restore_any_purchase_order_items',
+
+                'view_any_stock_movements',
 
                 'view_audit_logs',
                 'view_audit_logs',
