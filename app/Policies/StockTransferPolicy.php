@@ -30,6 +30,6 @@ class StockTransferPolicy
 
     public function delete(User $user, StockTransfer $stockTransfer): bool
     {
-        return $user->hasPermissionTo('delete_stock_transfers');
+        return false;
     }
 }
