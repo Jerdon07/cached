@@ -131,7 +131,7 @@ class AdministratorPermissionSeeder extends Seeder
                 'restore_any_warehouse_locations',
 
                 'view_stock_movements',
-                'view_stock_movements',
+                'view_any_stock_movements',
 
                 'view_inventory_adjustments',
                 'view_any_inventory_adjustments',
