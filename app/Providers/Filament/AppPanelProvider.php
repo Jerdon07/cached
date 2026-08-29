@@ -61,7 +61,7 @@ class AppPanelProvider extends PanelProvider
             ->navigationGroups([
                 NavigationGroup::make()->label('Dashboard'), /* Different dashboard based on role (Overview, Inventory Statistics, Sales Statistics, Purchasing Statistics, Low-Stock alerts, Pending Approvals, Recent Activity) */
                 NavigationGroup::make()->label('Catalog'), /* For maintaining the products that the business sells (Products, Categories, Brands, Units) */
-                NavigationGroup::make()->label('Warehousing'), /* Everything concerning physical storage (Warehouses, Storage Locations, Stock Transfers, Stock Counts, Inventory Adjustments) */
+                NavigationGroup::make()->label('Warehousing'), /* Everything concerning physical storage (Warehouses, Warehouse Locations, Stock Transfers, Stock Counts, Inventory Adjustments) */
                 NavigationGroup::make()->label('Inventory'), /* This is the actual stock management section (Inventory, Stock Movements, Inventory Adjustments, Stock Transfers, Stock Counts) */
                 NavigationGroup::make()->label('Purchasing'), /* For acquiring inventory from suppliers (Suppliers, Purchase Orders, Goods Receipts) */
                 NavigationGroup::make()->label('Sales'), /* For selling inventory (Customers, Sales Orders) */
