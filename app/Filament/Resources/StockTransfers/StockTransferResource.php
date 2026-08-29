@@ -6,6 +6,7 @@ use App\Filament\Resources\StockTransfers\Pages\CreateStockTransfer;
 use App\Filament\Resources\StockTransfers\Pages\EditStockTransfer;
 use App\Filament\Resources\StockTransfers\Pages\ListStockTransfers;
 use App\Filament\Resources\StockTransfers\Pages\ViewStockTransfer;
+use App\Filament\Resources\StockTransfers\RelationManagers\ItemsRelationManager;
 use App\Filament\Resources\StockTransfers\Schemas\StockTransferForm;
 use App\Filament\Resources\StockTransfers\Schemas\StockTransferInfolist;
 use App\Filament\Resources\StockTransfers\Tables\StockTransfersTable;
@@ -43,7 +44,7 @@ class StockTransferResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ItemsRelationManager::class,
         ];
     }
 
