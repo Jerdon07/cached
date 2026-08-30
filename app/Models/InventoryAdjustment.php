@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['adjustment_number', 'reason', 'status', 'created_by', 'approved_by', 'approved_at', 'notes'])]
+#[Fillable(['reason', 'status', 'created_by', 'approved_by', 'approved_at', 'notes'])]
 class InventoryAdjustment extends Model
 {
     protected function casts(): array
