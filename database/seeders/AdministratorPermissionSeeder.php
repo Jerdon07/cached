@@ -159,7 +159,7 @@ class AdministratorPermissionSeeder extends Seeder
 
                 'view_roles',
                 'view_any_roles',
-                'created_roles',
+                'create_roles',
                 'update_roles',
                 'delete_roles',
 
