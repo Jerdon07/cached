@@ -55,6 +55,6 @@ class CategoryPolicy
 
     public function forceDelete(User $user, Category $category): bool
     {
-        return $user->hasPermissionTo('force_delete_any_categories');
+        return $user->hasPermissionTo('force_delete_categories');
     }
 }
