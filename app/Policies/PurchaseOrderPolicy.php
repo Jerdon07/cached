@@ -35,7 +35,11 @@ class PurchaseOrderPolicy
 
     public function delete(User $user, PurchaseOrder $purchaseOrder): bool
     {
-        return $purchaseOrder->created_by === $user->id;
+        return $user->hasPermissionTo('delete_purchase_orders')
+            && in_array($purchaseOrder->status, [
+                PurchaseOrderStatus::Draft,
+                PurchaseOrderStatus::Pending,
+            ], true);
     }
 
     /* 
