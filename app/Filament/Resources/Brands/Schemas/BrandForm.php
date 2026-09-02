@@ -14,7 +14,7 @@ class BrandForm
             ->components([
                 TextInput::make('name')
                     ->required(),
-                Textarea::make('desctiption')
+                Textarea::make('description')
                     ->columnSpanFull(),
             ]);
     }

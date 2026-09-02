@@ -13,7 +13,7 @@ class BrandInfolist
         return $schema
             ->components([
                 TextEntry::make('name'),
-                TextEntry::make('desctiption')
+                TextEntry::make('description')
                     ->placeholder('-')
                     ->columnSpanFull(),
                 TextEntry::make('created_at')
