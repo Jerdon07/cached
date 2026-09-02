@@ -29,6 +29,6 @@ class GoodsReceipt extends Model
 
     public function getReceiptNumberAttribute(): string
     {
-        return 'GR-' . str_pad($this->id, 6, '0', STR_PAD_LEFT);
+        return 'GR-'.str_pad($this->id, 6, '0', STR_PAD_LEFT);
     }
 }

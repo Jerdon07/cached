@@ -15,7 +15,7 @@ enum SalesOrderStatus: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::Draft => 'Order is being created and can still be edited',
             self::Pending => 'Order has been submitted and is waiting for approval',
             self::Approved => 'Manager approved the order; it can proceed to fulfillment',

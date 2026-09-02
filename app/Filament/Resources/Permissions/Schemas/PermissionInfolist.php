@@ -13,7 +13,7 @@ class PermissionInfolist
         return $schema
             ->components([
                 TextEntry::make('name')
-                ->formatStateUsing(fn (string $state): string => Str::headline($state))
+                    ->formatStateUsing(fn (string $state): string => Str::headline($state)),
             ]);
     }
 }

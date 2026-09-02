@@ -45,6 +45,6 @@ class StockTransfer extends Model
 
     public function getTransferNumberAttribute(): string
     {
-        return 'ST-' . str_pad($this->id, 6, '0', STR_PAD_LEFT);
+        return 'ST-'.str_pad($this->id, 6, '0', STR_PAD_LEFT);
     }
 }

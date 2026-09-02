@@ -5,7 +5,6 @@ namespace App\Filament\Resources\StockTransfers\Pages;
 use App\Filament\Resources\StockTransfers\StockTransferResource;
 use App\StockTransferStatus;
 use Filament\Resources\Pages\CreateRecord;
-use Override;
 
 class CreateStockTransfer extends CreateRecord
 {

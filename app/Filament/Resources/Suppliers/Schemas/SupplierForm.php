@@ -41,7 +41,7 @@ class SupplierForm
                     ->numeric()
                     ->helperText('Enter postal code'),
                 Textarea::make('remarks')
-                    ->columnSpanFull()
+                    ->columnSpanFull(),
             ]);
     }
 }

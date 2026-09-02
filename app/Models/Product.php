@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 #[Fillable(['category_id', 'brand_id', 'unit_id', 'name', 'sku', 'barcode', 'description', 'selling_price', 'minimum_stock', 'is_active'])]
 class Product extends Model
 {
-    use SoftDeletes, HasFactory;
+    use HasFactory, SoftDeletes;
 
     public function category(): BelongsTo
     {
@@ -60,9 +60,9 @@ class Product extends Model
     public function scopeWithStockOnHand(Builder $query): void
     {
         $query->addSelect([
-        'stock_on_hand' => StockMovement::query()
-            ->selectRaw('COALESCE(SUM(quantity), 0)')
-            ->whereColumn('product_id', $this->getTable().'.id'),
+            'stock_on_hand' => StockMovement::query()
+                ->selectRaw('COALESCE(SUM(quantity), 0)')
+                ->whereColumn('product_id', $this->getTable().'.id'),
         ])->withCasts(['stock_on_hand' => 'decimal:3']);
     }
 

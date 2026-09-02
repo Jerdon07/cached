@@ -2,28 +2,13 @@
 
 namespace App\Filament\Resources\Products\RelationManagers;
 
-use App\Models\User;
 use App\StockMovementType;
-use Filament\Actions\AssociateAction;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\CreateAction;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\DissociateAction;
-use Filament\Actions\DissociateBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-use Override;
 
 class StockMovementsRelationManager extends RelationManager
 {
@@ -57,8 +42,7 @@ class StockMovementsRelationManager extends RelationManager
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('performedBy.name')
-                    ->description(fn ($record) => 
-                        $record->performedBy->roles->first()->name
+                    ->description(fn ($record) => $record->performedBy->roles->first()->name
                     )
                     ->sortable(),
                 TextColumn::make('created_at')

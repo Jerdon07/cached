@@ -5,7 +5,6 @@ namespace App\Policies;
 use App\InventoryAdjustmentStatus;
 use App\Models\InventoryAdjustment;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class InventoryAdjustmentPolicy
 {
@@ -33,7 +32,7 @@ class InventoryAdjustmentPolicy
     {
         return $user->hasPermissionTo('submit_inventory_adjustments');
     }
-    
+
     public function approve(User $user, InventoryAdjustment $inventoryAdjustment): bool
     {
         return $user->hasPermissionTo('approve_inventory_adjustments')

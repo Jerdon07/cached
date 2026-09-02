@@ -3,12 +3,14 @@
 use App\Models\Permission;
 use Database\Seeders\PermissionSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\TestCase;
 use Symfony\Component\Finder\Finder;
+
 uses(RefreshDatabase::class);
 
 it('every permission checked in a policy is seeded', function () {
-    
-    /** @var \Illuminate\Foundation\Testing\TestCase $this */
+
+    /** @var TestCase $this */
     $this->seed(PermissionSeeder::class);
 
     $seeded = Permission::pluck('name')->all();
@@ -16,6 +18,7 @@ it('every permission checked in a policy is seeded', function () {
     $referenced = collect(Finder::create()->files()->in(app_path('Policies'))->name('*.php'))
         ->flatMap(function ($file) {
             preg_match_all("/hasPermissionTo\(\s*'([^']+)'\s*\)/", $file->getContents(), $matches);
+
             return $matches[1];
         })
         ->unique()

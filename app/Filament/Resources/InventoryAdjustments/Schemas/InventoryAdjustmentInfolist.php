@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\InventoryAdjustments\Schemas;
 
-use App\InventoryAdjustmentReason;
 use App\InventoryAdjustmentStatus;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;

@@ -4,15 +4,12 @@ namespace App\Filament\Resources\Roles\RelationManagers;
 
 use App\Filament\Resources\Users\UserResource;
 use Filament\Actions\ActionGroup;
-use Filament\Actions\AssociateAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\DetachAction;
 use Filament\Actions\DetachBulkAction;
-use Filament\Actions\DissociateAction;
-use Filament\Actions\DissociateBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
@@ -46,7 +43,7 @@ class UsersRelationManager extends RelationManager
             ])
             ->defaultSort('users.created_at', 'desc')
             ->filters([
-                TrashedFilter::make()
+                TrashedFilter::make(),
             ])
             ->recordActions([
                 ActionGroup::make([
@@ -54,7 +51,7 @@ class UsersRelationManager extends RelationManager
                     EditAction::make(),
                     DeleteAction::make(),
                     DetachAction::make(),
-                ])
+                ]),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
@@ -62,7 +59,7 @@ class UsersRelationManager extends RelationManager
                     RestoreBulkAction::make(),
                     ForceDeleteBulkAction::make(),
                     DetachBulkAction::make(),
-                ])
+                ]),
             ]);
     }
 }

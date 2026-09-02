@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\Roles\Schemas;
 
-use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -22,7 +21,7 @@ class RoleForm
                     ->getOptionLabelFromRecordUsing(fn (Model $record): string => Str::headline($record->name))
                     ->relationship('permissions', 'name')
                     ->columnSpanFull()
-                    ->multiple()
+                    ->multiple(),
             ]);
     }
 }

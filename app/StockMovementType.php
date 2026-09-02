@@ -29,7 +29,7 @@ enum StockMovementType: string
 
     public function isAlwaysNegative(): bool
     {
-        return match($this) {
+        return match ($this) {
             self::Sale, self::TransferOut, self::Damage, self::Loss => true,
             default => false,
         };
@@ -37,7 +37,7 @@ enum StockMovementType: string
 
     public function isAlwaysPositive(): bool
     {
-        return match($this) {
+        return match ($this) {
             self::TransferIn, self::Return => true,
             default => false,
         };

@@ -47,7 +47,7 @@ class CategoriesTable
                     DeleteAction::make(),
                     RestoreAction::make(),
                     ForceDeleteAction::make(),
-                ])
+                ]),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

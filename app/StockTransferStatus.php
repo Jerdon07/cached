@@ -14,7 +14,7 @@ enum StockTransferStatus: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::Draft => 'Transfer is being prepared but has not been submitted',
             self::Pending => 'Transfer has been submitted and is waiting for approval',
             self::Approved => 'Transfer was approved and can now be processed',

@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\StockTransfer;
 use App\StockTransferStatus;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class StockTransferSeeder extends Seeder

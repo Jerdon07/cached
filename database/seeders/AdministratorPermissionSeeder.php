@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Permission;
 use App\Models\Role;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AdministratorPermissionSeeder extends Seeder
@@ -15,7 +14,7 @@ class AdministratorPermissionSeeder extends Seeder
 
         $administrator->permissions()->sync(
             Permission::whereIn('name', [
-                
+
                 /* CATALOG */
                 'view_products',
                 'view_any_products',
@@ -116,7 +115,6 @@ class AdministratorPermissionSeeder extends Seeder
 
                 'view_purchase_order_items',
                 'view_any_purchase_order_items',
-
 
                 'view_goods_receipts',
                 'view_goods_receipts',

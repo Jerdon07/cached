@@ -2,9 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\StockMovement;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class StockMovementPolicy
 {

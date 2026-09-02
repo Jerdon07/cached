@@ -27,5 +27,4 @@ class CreateProduct extends CreateRecord
             ->title('Product Created')
             ->body('Product is created successfully');
     }
-
 }

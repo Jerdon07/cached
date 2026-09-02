@@ -18,12 +18,12 @@ class WarehouseLocationFactory extends Factory
     {
         return [
             'warehouse_id' => Warehouse::factory(),
-            'zone'         => fake()->randomElement(['A', 'B', 'C', 'D', 'E']),
-            'aisle'        => sprintf('%02d', fake()->numberBetween(1, 20)),
-            'rack'         => sprintf('%02d', fake()->numberBetween(1, 10)),
-            'shelf'        => (string) fake()->numberBetween(1, 5),
-            'bin'          => sprintf('%02d', fake()->numberBetween(1, 50)),
-            'description'  => fake()->optional(0.3)->sentence(),
+            'zone' => fake()->randomElement(['A', 'B', 'C', 'D', 'E']),
+            'aisle' => sprintf('%02d', fake()->numberBetween(1, 20)),
+            'rack' => sprintf('%02d', fake()->numberBetween(1, 10)),
+            'shelf' => (string) fake()->numberBetween(1, 5),
+            'bin' => sprintf('%02d', fake()->numberBetween(1, 50)),
+            'description' => fake()->optional(0.3)->sentence(),
         ];
     }
 }

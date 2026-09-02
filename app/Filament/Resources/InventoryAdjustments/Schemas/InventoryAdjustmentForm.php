@@ -3,19 +3,14 @@
 namespace App\Filament\Resources\InventoryAdjustments\Schemas;
 
 use App\InventoryAdjustmentReason;
-use App\Models\InventoryAdjustmentItem;
-use App\Models\Product;
-use App\Models\WarehouseLocation;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\DB;
 
 class InventoryAdjustmentForm
 {
@@ -38,13 +33,12 @@ class InventoryAdjustmentForm
                             ->live(),
                         Select::make('warehouse_location_id')
                             ->relationship(
-                                name: 'warehouseLocation', 
+                                name: 'warehouseLocation',
                                 titleAttribute: 'id',
-                                modifyQueryUsing: fn (Builder $query, Get $get) =>
-                                    $query->whereHas('items', fn ($q) => $q->where('product_id', $get('product_id'))),
+                                modifyQueryUsing: fn (Builder $query, Get $get) => $query->whereHas('items', fn ($q) => $q->where('product_id', $get('product_id'))),
                             )->getOptionLabelFromRecordUsing(fn ($record) => $record->full_location)
                             ->required()
-                            ->disabled(fn (Get $get) => !$get('product_id')),
+                            ->disabled(fn (Get $get) => ! $get('product_id')),
                         TextInput::make('old_quantity')
                             ->numeric()
                             ->required(),
@@ -60,7 +54,7 @@ class InventoryAdjustmentForm
                             }),
                         TextInput::make('difference')
                             ->numeric(),
-                    ])
+                    ]),
             ]);
     }
 }

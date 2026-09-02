@@ -17,7 +17,7 @@ class StockTransferInfolist
                 TextEntry::make('status')
                     ->badge(),
                 TextEntry::make('approvedBy.name')
-                    ->hidden(fn ($record) => $record->status === StockTransferStatus::Pending)
+                    ->hidden(fn ($record) => $record->status === StockTransferStatus::Pending),
             ]);
     }
 }

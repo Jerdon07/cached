@@ -26,7 +26,7 @@ class WarehouseResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::BuildingOffice2;
 
-    protected static string | UnitEnum | null $navigationGroup = 'Warehousing';
+    protected static string|UnitEnum|null $navigationGroup = 'Warehousing';
 
     public static function form(Schema $schema): Schema
     {

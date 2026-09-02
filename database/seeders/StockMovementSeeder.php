@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\StockMovement;
 use App\StockMovementType;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class StockMovementSeeder extends Seeder
@@ -18,7 +17,7 @@ class StockMovementSeeder extends Seeder
             'movement_type' => StockMovementType::Sale,
             'quantity' => -20.00,
             'performed_by' => 1,
-            'notes' => 'The product stock movement for this is sale.'
+            'notes' => 'The product stock movement for this is sale.',
         ]);
     }
 }

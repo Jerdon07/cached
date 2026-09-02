@@ -34,7 +34,9 @@ class ItemsRelationManager extends RelationManager
                     ->required()
                     ->live()
                     ->afterStateUpdated(function ($state, Set $set) {
-                        if (!$state) return;
+                        if (! $state) {
+                            return;
+                        }
 
                         $supplier_id = $this->getOwnerRecord()->supplier_id;
 
@@ -47,16 +49,18 @@ class ItemsRelationManager extends RelationManager
                 TextInput::make('quantity')
                     ->numeric()
                     ->required()
-                    ->suffix(function (Get $get):?string {
+                    ->suffix(function (Get $get): ?string {
                         $product_id = $get('product_id');
-                        if (!$product_id) return null;
+                        if (! $product_id) {
+                            return null;
+                        }
 
                         return Product::findOrFail($product_id)->unit->abbreviation;
                     }),
                 TextInput::make('unit_cost')
                     ->numeric()
                     ->required()
-                    ->prefix('₱')
+                    ->prefix('₱'),
             ]);
     }
 

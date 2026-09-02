@@ -21,7 +21,7 @@ use UnitEnum;
 class PurchaseOrderResource extends Resource
 {
     protected static ?string $model = PurchaseOrder::class;
-    
+
     protected static string|UnitEnum|null $navigationGroup = 'Purchasing';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::DocumentCurrencyDollar;

@@ -10,19 +10,19 @@ use App\Filament\Resources\StockTransfers\RelationManagers\ItemsRelationManager;
 use App\Filament\Resources\StockTransfers\Schemas\StockTransferForm;
 use App\Filament\Resources\StockTransfers\Schemas\StockTransferInfolist;
 use App\Filament\Resources\StockTransfers\Tables\StockTransfersTable;
+use App\Models\StockTransfer;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use App\Models\StockTransfer;
 use UnitEnum;
 
 class StockTransferResource extends Resource
 {
     protected static ?string $model = StockTransfer::class;
 
-    protected static string|UnitEnum|null $navigationGroup = "Warehousing";
+    protected static string|UnitEnum|null $navigationGroup = 'Warehousing';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ArrowsRightLeft;
 

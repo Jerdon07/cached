@@ -17,7 +17,7 @@ class PurchaseOrder extends Model
             'order_date' => 'date',
             'expected_delivery_date' => 'date',
             'status' => PurchaseOrderStatus::class,
-            'approved_at' => 'date'
+            'approved_at' => 'date',
         ];
     }
 
@@ -48,6 +48,6 @@ class PurchaseOrder extends Model
 
     public function getPurchaseOrderAttribute(): string
     {
-        return 'PO-' . str_pad($this->id, 6, '0', STR_PAD_LEFT);
+        return 'PO-'.str_pad($this->id, 6, '0', STR_PAD_LEFT);
     }
 }

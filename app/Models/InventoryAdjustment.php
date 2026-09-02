@@ -38,6 +38,6 @@ class InventoryAdjustment extends Model
 
     public function getAdjustmentNumberAttribute(): string
     {
-        return 'IA-' . str_pad($this->id, 6, '0', STR_PAD_LEFT);
+        return 'IA-'.str_pad($this->id, 6, '0', STR_PAD_LEFT);
     }
 }

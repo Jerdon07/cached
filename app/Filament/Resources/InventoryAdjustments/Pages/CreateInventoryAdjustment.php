@@ -5,7 +5,6 @@ namespace App\Filament\Resources\InventoryAdjustments\Pages;
 use App\Filament\Resources\InventoryAdjustments\InventoryAdjustmentResource;
 use App\InventoryAdjustmentStatus;
 use Filament\Resources\Pages\CreateRecord;
-use Override;
 
 class CreateInventoryAdjustment extends CreateRecord
 {

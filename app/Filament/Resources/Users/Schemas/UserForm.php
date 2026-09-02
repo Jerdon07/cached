@@ -3,9 +3,7 @@
 namespace App\Filament\Resources\Users\Schemas;
 
 use App\Models\Role;
-use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\CheckboxList;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 

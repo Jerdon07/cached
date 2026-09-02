@@ -37,7 +37,7 @@ class CustomersTable
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('sales_orders_count')
                     ->counts('salesOrders')
-                    ->label('Orders')
+                    ->label('Orders'),
             ])
             ->filters([
                 //
@@ -46,7 +46,7 @@ class CustomersTable
                 ActionGroup::make([
                     ViewAction::make(),
                     EditAction::make(),
-                ])
+                ]),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

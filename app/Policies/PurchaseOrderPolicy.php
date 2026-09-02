@@ -5,7 +5,6 @@ namespace App\Policies;
 use App\Models\PurchaseOrder;
 use App\Models\User;
 use App\PurchaseOrderStatus;
-use Illuminate\Auth\Access\Response;
 
 class PurchaseOrderPolicy
 {
@@ -42,7 +41,7 @@ class PurchaseOrderPolicy
             ], true);
     }
 
-    /* 
+    /*
     * Can approve puchase orders with pending status
     */
     public function approve(User $user, PurchaseOrder $purchaseOrder): bool
@@ -51,7 +50,7 @@ class PurchaseOrderPolicy
             && $purchaseOrder->status === PurchaseOrderStatus::Pending;
     }
 
-    /* 
+    /*
     * Can reject puchase orders with pending status
     */
     public function reject(User $user, PurchaseOrder $purchaseOrder): bool
@@ -60,7 +59,7 @@ class PurchaseOrderPolicy
             && $purchaseOrder->status === PurchaseOrderStatus::Pending;
     }
 
-    /* 
+    /*
     * Can close puchase orders with approved status
     */
     public function close(User $user, PurchaseOrder $purchaseOrder): bool

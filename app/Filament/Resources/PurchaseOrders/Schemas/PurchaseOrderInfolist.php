@@ -15,15 +15,18 @@ class PurchaseOrderInfolist
             ->components([
                 Section::make('Details')
                     ->columnSpan(function ($record) {
-                        if ($record->approved_by) return 5;
-                        else return 'full';
+                        if ($record->approved_by) {
+                            return 5;
+                        } else {
+                            return 'full';
+                        }
                     })
                     ->schema([
                         TextEntry::make('createdBy.name')
                             ->numeric()
                             ->placeholder('-')
                             ->belowContent(fn ($record) => "| $record->notes")
-                            ->inlineLabel(fn ($record) => !$record->approved_by),
+                            ->inlineLabel(fn ($record) => ! $record->approved_by),
                         TextEntry::make('supplier.company_name')
                             ->inlineLabel()
                             ->label('Supplier: '),
@@ -32,28 +35,28 @@ class PurchaseOrderInfolist
                             ->label('Status: ')
                             ->badge(),
                     ]),
-                
+
                 Section::make('Order Information')
-                    ->hidden(fn ($record) => !$record?->approved_by)
+                    ->hidden(fn ($record) => ! $record?->approved_by)
                     ->columnSpan(7)
                     ->inlineLabel()
                     ->schema([
                         TextEntry::make('approvedBy.name')
                             ->label('Approved by:')
                             ->numeric()
-                            ->hidden(fn ($record) => !$record?->approved_by),
+                            ->hidden(fn ($record) => ! $record?->approved_by),
                         TextEntry::make('order_date')
                             ->label('Ordered Date:')
                             ->date()
-                            ->hidden(fn ($record) => !$record?->approved_by),
+                            ->hidden(fn ($record) => ! $record?->approved_by),
                         TextEntry::make('expected_delivery_date')
                             ->label('Expected Delivery Date:')
                             ->date()
-                            ->hidden(fn ($record) => !$record?->approved_by),
+                            ->hidden(fn ($record) => ! $record?->approved_by),
                         TextEntry::make('approved_at')
                             ->label('Approved at:')
                             ->date()
-                            ->hidden(fn ($record) => !$record?->approved_by),
+                            ->hidden(fn ($record) => ! $record?->approved_by),
                     ]),
 
                 Section::make()
@@ -66,7 +69,7 @@ class PurchaseOrderInfolist
                         TextEntry::make('updated_at')
                             ->dateTime()
                             ->placeholder('-'),
-                    ])
+                    ]),
             ]);
     }
 }

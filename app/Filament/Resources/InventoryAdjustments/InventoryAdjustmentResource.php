@@ -9,26 +9,26 @@ use App\Filament\Resources\InventoryAdjustments\Pages\ViewInventoryAdjustment;
 use App\Filament\Resources\InventoryAdjustments\Schemas\InventoryAdjustmentForm;
 use App\Filament\Resources\InventoryAdjustments\Schemas\InventoryAdjustmentInfolist;
 use App\Filament\Resources\InventoryAdjustments\Tables\InventoryAdjustmentsTable;
+use App\Models\InventoryAdjustment;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use App\Models\InventoryAdjustment;
 use UnitEnum;
 
 class InventoryAdjustmentResource extends Resource
 {
     protected static ?string $model = InventoryAdjustment::class;
 
-    protected static string|UnitEnum|null $navigationGroup = "Warehousing";
+    protected static string|UnitEnum|null $navigationGroup = 'Warehousing';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::AdjustmentsHorizontal;
 
     public static function form(Schema $schema): Schema
     {
         return InventoryAdjustmentForm::configure($schema);
-    }   
+    }
 
     public static function infolist(Schema $schema): Schema
     {

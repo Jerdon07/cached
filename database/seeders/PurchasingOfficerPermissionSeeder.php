@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Permission;
 use App\Models\Role;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PurchasingOfficerPermissionSeeder extends Seeder
@@ -12,14 +11,14 @@ class PurchasingOfficerPermissionSeeder extends Seeder
     public function run(): void
     {
         $purchasingOfficer = Role::where('name', 'Purchasing Officer')->firstOrFail();
-        
+
         $purchasingOfficer->permissions()->sync(
             Permission::whereIn('name', [
                 'view_any_products',
                 'view_products',
                 'view_any_categories',
                 'view_categories',
-                
+
                 'view_any_suppliers',
                 'view_suppliers',
                 'create_suppliers',

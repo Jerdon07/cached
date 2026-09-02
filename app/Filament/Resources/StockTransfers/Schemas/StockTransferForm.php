@@ -31,7 +31,7 @@ class StockTransferForm
                         TextInput::make('quantity')
                             ->numeric()
                             ->required(),
-                    ])
+                    ]),
             ]);
     }
 }
