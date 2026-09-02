@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Warehouses\RelationManagers;
 
+use App\Models\Product;
+use App\Models\StockMovement;
 use App\Models\WarehouseLocation;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\AssociateAction;
@@ -81,15 +83,21 @@ class WarehouseLocationsRelationManager extends RelationManager
                             ]),
                         Tab::make('Items')
                             ->schema([
-                                RepeatableEntry::make('items')
-                                    ->columns(2)
+                                RepeatableEntry::make('stockedProducts')
                                     ->hiddenLabel()
+                                    ->state(fn (WarehouseLocation $record) => StockMovement::query()
+                                        ->selectRaw('product_id, SUM(quantity) as quantity')
+                                        ->where('warehouse_location_id', $record->id)
+                                        ->groupBy('product_id')
+                                        ->havingRaw('SUM(quantity) > 0')
+                                        ->with('product.unit')
+                                        ->get())
                                     ->schema([
                                         TextEntry::make('product.name')
                                             ->label('Product Name'),
-                                        TextEntry::make('new_quantity')
+                                        TextEntry::make('quantity')
                                             ->label('Available Quantity')
-                                            ->suffix(fn ($record) => $record->product->unit->abbreviation)
+                                            ->suffix(fn ($record) => $record->product->unit->abbreviation),
                                     ]),
                             ]),
                     ]),
