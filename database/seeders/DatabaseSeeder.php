@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             AdministratorPermissionSeeder::class,
             PurchasingOfficerPermissionSeeder::class,
+            PurchasingManagerPermissionSeeder::class,
             UserSeeder::class,
 
             CategorySeeder::class,
