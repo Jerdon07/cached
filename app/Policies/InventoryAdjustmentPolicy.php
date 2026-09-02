@@ -48,6 +48,10 @@ class InventoryAdjustmentPolicy
 
     public function delete(User $user, InventoryAdjustment $inventoryAdjustment): bool
     {
-        return $user->hasPermissionTo('delete_inventory_adjustments');
+        return $user->hasPermissionTo('delete_inventory_adjustments')
+            && in_array($inventoryAdjustment->status, [
+                InventoryAdjustmentStatus::Draft,
+                InventoryAdjustmentStatus::Pending,
+            ]);
     }
 }
