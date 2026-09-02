@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -32,5 +33,16 @@ class WarehouseLocation extends Model
     public function items(): HasMany
     {
         return $this->hasMany(InventoryAdjustmentItem::class);
+    }
+
+    public function getFullLocationAttribute(): string
+    {
+        return collect([
+            $this->zone,
+            $this->aisle,
+            $this->rack,
+            $this->shelf,
+            $this->bin,
+        ])->filter()->implode(' ');
     }
 }
