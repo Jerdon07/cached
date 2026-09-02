@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -59,13 +60,22 @@ class UserSeeder extends Seeder
         foreach ($users as $userData) {
             $role = Role::where('name', $userData['role'])->firstOrFail();
 
-            $user = User::create([
-                'name' => $userData['name'],
-                'email' => $userData['email'],
-                'password' => Hash::make('password'),
-            ]);
+            $user = User::firstOrCreate(
+                [
+                    'email' => $userData['email'],
+                ], [
+                    'name' => $userData['name'],
+                    'password' => Hash::make('password'),
+                ]
+            );
 
             $user->roles()->attach($role->id);
         }
+
+        $roles = Role::all();
+
+        User::factory(30)
+            ->hasAttached($roles->random(3))
+            ->create();
     }
 }
