@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 #[Fillable(['category_id', 'brand_id', 'unit_id', 'name', 'sku', 'barcode', 'description', 'selling_price', 'minimum_stock', 'is_active'])]
 class Product extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasFactory;
 
     public function category(): BelongsTo
     {

@@ -24,5 +24,7 @@ class ProductSeeder extends Seeder
                 'is_active' => true,
             ]
         );
+
+        Product::factory(30)->create();
     }
 }
