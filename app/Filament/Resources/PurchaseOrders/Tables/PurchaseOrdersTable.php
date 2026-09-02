@@ -23,20 +23,24 @@ class PurchaseOrdersTable
                 TextColumn::make('purchaseOrder'),
                 TextColumn::make('supplier.company_name')
                     ->searchable(),
-                TextColumn::make('createdBy.name')
-                    ->sortable(),
-                TextColumn::make('approvedBy.name')
-                    ->sortable(),
-                TextColumn::make('order_date')
-                    ->date()
-                    ->sortable(),
-                TextColumn::make('expected_delivery_date')
-                    ->date()
-                    ->sortable(),
                 TextColumn::make('status')
                     ->badge()
                     ->searchable(),
+                TextColumn::make('createdBy.name')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('approvedBy.name')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('order_date')
+                    ->date()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('approved_at')
+                    ->date()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('expected_delivery_date')
                     ->date()
                     ->sortable(),
                 TextColumn::make('created_at')
