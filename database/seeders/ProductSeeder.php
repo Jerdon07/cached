@@ -3,27 +3,22 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use App\Models\Supplier;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
 {
     public function run(): void
     {
-        Product::firstOrCreate(
-            ['name' => 'ProductName'],
-            [
-                'category_id' => 1,
-                'brand_id' => 1,
-                'unit_id' => 1,
-                'sku' => 'Z023AX10',
-                'barcode' => '0123456789012',
-                'description' => 'A product from the warehouse.',
-                'selling_price' => 99.00,
-                'minimum_stock' => 5,
-                'is_active' => true,
-            ]
-        );
+        $suppliers = Supplier::all();
 
-        Product::factory(30)->create();
+        Product::factory(30)
+            ->hasAttached(
+                factory: $suppliers->random(5),
+                pivot: fn () => [
+                    'cost_price' => fake()->randomFloat(2, 10, 500),
+                    'preferred' => fake()->boolean(10),
+                ]
+            )->create();
     }
 }
