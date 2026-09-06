@@ -2,12 +2,17 @@
 
 namespace App\Filament\Resources\PurchaseOrders\Tables;
 
+use App\Filament\Resources\PurchaseOrders\Actions\ApprovePurchaseOrderAction;
+use App\Models\PurchaseOrder;
+use App\PurchaseOrderStatus;
+use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\TernaryFilter;
@@ -40,7 +45,7 @@ class PurchaseOrdersTable
                     ->date()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('expected_delivery_date')
+                TextColumn::make('delivery_date')
                     ->date()
                     ->sortable(),
                 TextColumn::make('created_at')
@@ -66,12 +71,27 @@ class PurchaseOrdersTable
                 Filter::make('created_by_me')
                     ->query(fn (Builder $query) => $query->where('created_by', '=', auth()->user()->id)),
             ])
-            ->recordActions(
+            ->recordActions([
+                ApprovePurchaseOrderAction::make(),
+                Action::make('reject')
+                    ->icon(Heroicon::XMark)
+                    ->color('danger')
+                    ->authorize('reject')
+                    ->requiresConfirmation(),
+                Action::make('complete')
+                    ->icon(Heroicon::CheckCircle)
+                    ->authorize('complete')
+                    ->requiresConfirmation(),
+                Action::make('cancel')
+                    ->icon(Heroicon::XCircle)
+                    ->authorize('cancel')
+                    ->color('danger')
+                    ->requiresConfirmation(),
                 ActionGroup::make([
                     ViewAction::make(),
                     EditAction::make(),
                     DeleteAction::make(),
-                ])
+                ])]
             )
             ->toolbarActions([
                 BulkActionGroup::make([
