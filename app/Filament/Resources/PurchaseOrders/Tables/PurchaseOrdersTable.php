@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\PurchaseOrders\Tables;
 
 use App\Filament\Resources\PurchaseOrders\Actions\ApprovePurchaseOrderAction;
+use App\Filament\Resources\PurchaseOrders\Actions\CompletePurchaseOrderAction;
 use App\Models\PurchaseOrder;
 use App\PurchaseOrderStatus;
 use Filament\Actions\Action;
@@ -78,10 +79,7 @@ class PurchaseOrdersTable
                     ->color('danger')
                     ->authorize('reject')
                     ->requiresConfirmation(),
-                Action::make('complete')
-                    ->icon(Heroicon::CheckCircle)
-                    ->authorize('complete')
-                    ->requiresConfirmation(),
+                CompletePurchaseOrderAction::make('complete'),
                 Action::make('cancel')
                     ->icon(Heroicon::XCircle)
                     ->authorize('cancel')
