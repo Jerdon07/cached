@@ -16,6 +16,7 @@ use Filament\Actions\ViewAction;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -31,6 +32,19 @@ class PurchaseOrdersTable
                     ->searchable(),
                 TextColumn::make('status')
                     ->badge()
+                    ->color(function (PurchaseOrder $record) {
+                        switch ($record->status) {
+                            case PurchaseOrderStatus::Pending:
+                                return 'gray';
+                            case PurchaseOrderStatus::Rejected:
+                            case PurchaseOrderStatus::Cancelled:
+                                return 'danger';
+                            case PurchaseOrderStatus::Completed:
+                                return 'success';
+                            default:
+                                return 'info';
+                        }
+                    })
                     ->searchable(),
                 TextColumn::make('createdBy.name')
                     ->sortable()
@@ -59,33 +73,32 @@ class PurchaseOrdersTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                TernaryFilter::make('approved_by')
-                    ->label('Approval status')
-                    ->placeholder('All')
-                    ->trueLabel('Approved')
-                    ->falseLabel('Not Approved')
-                    ->queries(
-                        true: fn (Builder $query) => $query->whereNotNull('approved_by'),
-                        false: fn (Builder $query) => $query->whereNull('approved_by'),
-                        blank: fn (Builder $query) => $query,
-                    ),
+                SelectFilter::make('status')
+                    ->options(PurchaseOrderStatus::class),
                 Filter::make('created_by_me')
+                    ->hidden(fn () => !auth()->user()->hasPermissionTo('create_purchase_orders'))
                     ->query(fn (Builder $query) => $query->where('created_by', '=', auth()->user()->id)),
             ])
             ->recordActions([
-                ApprovePurchaseOrderAction::make(),
-                Action::make('reject')
-                    ->icon(Heroicon::XMark)
-                    ->color('danger')
-                    ->authorize('reject')
-                    ->requiresConfirmation(),
-                CompletePurchaseOrderAction::make('complete'),
-                Action::make('cancel')
-                    ->icon(Heroicon::XCircle)
-                    ->authorize('cancel')
-                    ->color('danger')
-                    ->requiresConfirmation(),
                 ActionGroup::make([
+                    ApprovePurchaseOrderAction::make(),
+                    Action::make('reject')
+                        ->icon(Heroicon::XMark)
+                        ->color('danger')
+                        ->authorize('reject')
+                        ->requiresConfirmation()
+                        ->action(fn (PurchaseOrder $record) => $record->update([
+                            'status' => PurchaseOrderStatus::Rejected
+                        ])),
+                    CompletePurchaseOrderAction::make('complete'),
+                    Action::make('cancel')
+                        ->icon(Heroicon::XCircle)
+                        ->authorize('cancel')
+                        ->color('danger')
+                        ->requiresConfirmation()
+                        ->action(fn (PurchaseOrder $record) => $record->update([
+                            'status' => PurchaseOrderStatus::Cancelled
+                        ])),
                     ViewAction::make(),
                     EditAction::make(),
                     DeleteAction::make(),
