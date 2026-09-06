@@ -72,8 +72,8 @@ class PermissionSeeder extends Seeder
             // Purchase Orders
             'approve_purchase_orders',
             'reject_purchase_orders',
-            'send_purchase_orders', // I don't know what's the use
-            'close_purchase_orders', // I don't know what's the use
+            'cancel_purchase_orders',
+            'complete_purchase_orders',
 
             // Goods Receiving
             'receive_goods', // I don't know what's the use

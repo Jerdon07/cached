@@ -59,12 +59,24 @@ class PurchaseOrderPolicy
             && $purchaseOrder->status === PurchaseOrderStatus::Pending;
     }
 
+    public function cancel(User $user, PurchaseOrder $purchaseOrder): bool
+    {
+        return $user->hasPermissionTo('cancel_purchase_orders')
+            && $purchaseOrder->status === PurchaseOrderStatus::Approved;
+    }
+
+    public function complete(User $user, PurchaseOrder $purchaseOrder): bool
+    {
+        return $user->hasPermissionTo('complete_purchase_orders')
+            && $purchaseOrder->status === PurchaseOrderStatus::Approved;
+    }
+
     /*
     * Can close puchase orders with approved status
     */
     public function close(User $user, PurchaseOrder $purchaseOrder): bool
     {
-        return $user->hasPermissionTo('close_purchase_orders')
+        return $user->hasPermissionTo('complete_purchase_orders')
             && $purchaseOrder->status === PurchaseOrderStatus::Approved;
     }
 }

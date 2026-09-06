@@ -26,8 +26,8 @@ class PurchasingManagerPermissionSeeder extends Seeder
                 'view_purchase_orders',
                 'approve_purchase_orders',
                 'reject_purchase_orders',
-                'send_purchase_orders',
-                'close_purchase_orders',
+                'cancel_purchase_orders',
+                'complete_purchase_orders',
 
                 'view_any_purchase_order_items',
                 'view_purchase_order_items',
