@@ -28,7 +28,7 @@ class PurchaseOrderForm
                     ->afterStateUpdated(
                         fn (Get $get, Set $set) => static::updateUnitCost($get, $set),
                     ),
-                DatePicker::make('expected_delivery_date')
+                DatePicker::make('delivery_date')
                     ->hidden(),
                 Repeater::make('items')
                     ->relationship('items')

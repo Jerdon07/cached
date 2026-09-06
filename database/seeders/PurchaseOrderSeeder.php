@@ -13,7 +13,7 @@ class PurchaseOrderSeeder extends Seeder
         PurchaseOrder::create([
             'supplier_id' => 1,
             'order_date' => now(),
-            'expected_delivery_date' => now()->addDays(3),
+            'delivery_date' => now()->addDays(3),
             'status' => PurchaseOrderStatus::Pending,
             'notes' => 'A nice purchase order from a supplier.',
             'created_by' => 1,
