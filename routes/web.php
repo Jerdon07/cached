@@ -10,19 +10,20 @@ Route::get('/', function () {
 
 if (! app()->isProduction()) {
     Route::prefix('dev')->name('dev.')->group(function () {
-        Route::get('login/systemadministration', function () {
+        Route::get('login/sa', function () {
+
             auth()->loginUsingId(1);
 
             return redirect()->route('filament.app.pages.dashboard');
         });
 
-        Route::get('login/purchasingofficer', function () {
+        Route::get('login/po', function () {
             auth()->loginUsingId(2);
 
             return redirect()->route('filament.app.pages.dashboard');
         });
 
-        Route::get('login/purchasingmanager', function () {
+        Route::get('login/pm', function () {
             auth()->loginUsingId(3);
 
             return redirect()->route('filament.app.pages.dashboard');
