@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\PurchaseOrderStatus;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,6 +12,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 #[Fillable(['supplier_id', 'order_date', 'delivery_date', 'status', 'notes', 'created_by', 'approved_by', 'approved_at'])]
 class PurchaseOrder extends Model
 {
+    use HasFactory;
+
     protected function casts(): array
     {
         return [

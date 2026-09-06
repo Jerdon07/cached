@@ -10,14 +10,6 @@ class PurchaseOrderSeeder extends Seeder
 {
     public function run(): void
     {
-        PurchaseOrder::create([
-            'supplier_id' => 1,
-            'order_date' => now(),
-            'delivery_date' => now()->addDays(3),
-            'status' => PurchaseOrderStatus::Pending,
-            'notes' => 'A nice purchase order from a supplier.',
-            'created_by' => 1,
-            'approved_at' => now()->addHour(),
-        ]);
+        PurchaseOrder::factory(20)->create();
     }
 }
