@@ -76,8 +76,11 @@ class PurchaseOrdersTable
                 SelectFilter::make('status')
                     ->options(PurchaseOrderStatus::class),
                 Filter::make('created_by_me')
-                    ->hidden(fn () => !auth()->user()->hasPermissionTo('create_purchase_orders'))
+                    ->visible(fn () => auth()->user()->hasPermissionTo('create_purchase_orders'))
                     ->query(fn (Builder $query) => $query->where('created_by', '=', auth()->user()->id)),
+                Filter::make('approved_by_me')
+                    ->visible(fn () => auth()->user()->hasPermissionTo('approve_purchase_orders'))
+                    ->query(fn (Builder $query) => $query->where('approved_by', auth()->id()))
             ])
             ->recordActions([
                 ActionGroup::make([
