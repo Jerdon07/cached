@@ -17,12 +17,17 @@ class GoodsReceipt extends Model
         ];
     }
 
+    public function receivedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'received_by');
+    }
+
     public function purchaseOrder(): BelongsTo
     {
         return $this->belongsTo(PurchaseOrder::class);
     }
 
-    public function goodsReceiptItems(): HasMany
+    public function items(): HasMany
     {
         return $this->hasMany(GoodsReceiptItem::class);
     }
