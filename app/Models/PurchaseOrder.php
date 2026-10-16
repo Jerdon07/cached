@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['supplier_id', 'order_date', 'delivery_date', 'status', 'notes', 'created_by', 'approved_by', 'approved_at'])]
+#[Fillable(['supplier_id', 'order_date', 'expected_delivery_date', 'status', 'notes', 'created_by', 'approved_by', 'approved_at'])]
 class PurchaseOrder extends Model
 {
     use HasFactory;
@@ -18,7 +18,7 @@ class PurchaseOrder extends Model
     {
         return [
             'order_date' => 'date',
-            'delivery_date' => 'date',
+            'expected_delivery_date' => 'date',
             'status' => PurchaseOrderStatus::class,
             'approved_at' => 'date',
         ];

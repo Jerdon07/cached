@@ -21,7 +21,7 @@ class ApprovePurchaseOrderAction {
             ->authorize('approve')
             ->requiresConfirmation()
             ->schema([
-                DatePicker::make('delivery_date')
+                DatePicker::make('expected_delivery_date')
                     ->label('Expected Delivery Date')
                     ->minDate(today())
                     ->maxDate(weeks(3))

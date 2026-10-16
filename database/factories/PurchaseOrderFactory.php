@@ -27,7 +27,7 @@ class PurchaseOrderFactory extends Factory
             'supplier_id' => Supplier::inRandomOrder()->value('id'),
             'order_date' => now()->subDay(),
             'approved_at' => fake()->optional(0.33)->dateTimeBetween('now', '+1 week'),
-            'delivery_date' => $deliveryDate,
+            'expected_delivery_date' => $deliveryDate,
             'status' => $deliveryDate
                 ? PurchaseOrderStatus::Approved
                 : PurchaseOrderStatus::Pending,

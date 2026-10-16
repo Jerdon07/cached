@@ -49,7 +49,7 @@ class PurchaseOrderInfolist
                             ->label('Ordered Date:')
                             ->date()
                             ->hidden(fn ($record) => ! $record?->approved_by),
-                        TextEntry::make('delivery_date')
+                        TextEntry::make('expected_delivery_date')
                             ->label('Expected Delivery Date:')
                             ->date()
                             ->hidden(fn ($record) => ! $record?->approved_by),
