@@ -29,43 +29,43 @@ if (! app()->isProduction()) {
             return redirect()->route('filament.app.pages.dashboard');
         });
 
-        Route::get('login/warehousemanager', function () {
+        Route::get('login/wm', function () {
             auth()->loginUsingId(4);
 
             return redirect()->route('filament.app.pages.dashboard');
         });
 
-        Route::get('login/warehousestaff', function () {
+        Route::get('login/ws', function () {
             auth()->loginUsingId(5);
 
             return redirect()->route('filament.app.pages.dashboard');
         });
 
-        Route::get('login/salesrepresentative', function () {
+        Route::get('login/sr', function () {
             auth()->loginUsingId(6);
 
             return redirect()->route('filament.app.pages.dashboard');
         });
 
-        Route::get('login/salesmanager', function () {
+        Route::get('login/sm', function () {
             auth()->loginUsingId(7);
 
             return redirect()->route('filament.app.pages.dashboard');
         });
 
-        Route::get('login/inventorycontroller', function () {
+        Route::get('login/ic', function () {
             auth()->loginUsingId(8);
 
             return redirect()->route('filament.app.pages.dashboard');
         });
 
-        Route::get('login/financeofficer', function () {
+        Route::get('login/fo', function () {
             auth()->loginUsingId(9);
 
             return redirect()->route('filament.app.pages.dashboard');
         });
 
-        Route::get('login/generalmanager', function () {
+        Route::get('login/gm', function () {
             auth()->loginUsingId(10);
 
             return redirect()->route('filament.app.pages.dashboard');
