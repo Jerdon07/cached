@@ -4,6 +4,7 @@ namespace App\Filament\Resources\PurchaseOrders\Tables;
 
 use App\Filament\Resources\PurchaseOrders\Actions\ApprovePurchaseOrderAction;
 use App\Filament\Resources\PurchaseOrders\Actions\CompletePurchaseOrderAction;
+use App\Filament\Resources\PurchaseOrders\Actions\ReceiveGoodsAction;
 use App\Models\PurchaseOrder;
 use App\PurchaseOrderStatus;
 use Filament\Actions\Action;
@@ -93,6 +94,7 @@ class PurchaseOrdersTable
                         ->action(fn (PurchaseOrder $record) => $record->update([
                             'status' => PurchaseOrderStatus::Rejected
                         ])),
+                    ReceiveGoodsAction::make(),
                     CompletePurchaseOrderAction::make('complete'),
                     Action::make('cancel')
                         ->icon(Heroicon::XCircle)
