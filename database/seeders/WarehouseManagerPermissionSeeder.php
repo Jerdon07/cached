@@ -21,8 +21,6 @@ class WarehouseManagerPermissionSeeder extends Seeder
                 'view_purchase_order_items',
                 'view_any_purchase_order_items',
 
-                'receive_goods',
-
                 'view_warehouses',
                 'view_any_warehouses',
                 'create_warehouses',

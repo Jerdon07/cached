@@ -21,8 +21,6 @@ class WarehouseStaffPermissionSeeder extends Seeder
 
                 'view_any_purchase_order_items',
                 'view_purchase_order_items',
-
-                'receive_goods',
                 
                 'view_any_goods_receipts',
                 'view_goods_receipts',

@@ -75,9 +75,6 @@ class PermissionSeeder extends Seeder
             'cancel_purchase_orders',
             'complete_purchase_orders',
 
-            // Goods Receiving
-            'receive_goods', // I don't know what's the use
-
             // Inventory Adjustments
             // Mirrors the purchase order workflow: draft -> submit -> approve/reject.
             // Without these, 'adjust_inventory' below is left to cover both
