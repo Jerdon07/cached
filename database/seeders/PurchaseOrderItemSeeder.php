@@ -16,5 +16,7 @@ class PurchaseOrderItemSeeder extends Seeder
             'quantity' => 20.00,
             'unit_cost' => 50.00,
         ]);
+
+        PurchaseOrderItem::factory(100)->create();
     }
 }
