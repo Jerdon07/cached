@@ -9,6 +9,7 @@ enum PurchaseOrderStatus: string
     case Approved = 'approved';
     case Rejected = 'rejected';
     case Cancelled = 'cancelled';
+    case PartiallyReceived = 'partially_received';
     case Completed = 'completed';
 
     public function label(): string
@@ -19,6 +20,7 @@ enum PurchaseOrderStatus: string
             self::Approved => 'Manager approved the order and can be completed',
             self::Rejected => 'Manager rejected the order',
             self::Cancelled => 'Order was cancelled before completion',
+            self::PartiallyReceived => 'Received some of the purchased orders',
             self::Completed => 'Order has been successfully fulfilled',
         };
     }
