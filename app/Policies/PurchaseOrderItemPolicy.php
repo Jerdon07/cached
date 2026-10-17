@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\PurchaseOrderItem;
 use App\Models\User;
+use App\PurchaseOrderStatus;
 
 class PurchaseOrderItemPolicy
 {
@@ -24,7 +25,10 @@ class PurchaseOrderItemPolicy
 
     public function update(User $user, PurchaseOrderItem $purchaseOrderItem): bool
     {
-        return $user->hasPermissionTo('update_purchase_order_items');
+        return $user->hasPermissionTo('update_purchase_order_items') && (
+            $purchaseOrderItem->purchaseOrder->status === PurchaseOrderStatus::Draft 
+                || $purchaseOrderItem->purchaseOrder->status === PurchaseOrderStatus::Pending
+        );
     }
 
     public function delete(User $user, PurchaseOrderItem $purchaseOrderItem): bool
