@@ -15,14 +15,16 @@ class GoodsReceiptsTable
     {
         return $table
             ->columns([
-                TextColumn::make('purchaseOrder.id')
+                TextColumn::make('receiptNumber')
                     ->searchable(),
-                TextColumn::make('received_by')
+                TextColumn::make('receivedBy.name')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('received_date')
                     ->date()
                     ->sortable(),
+                TextColumn::make('purchaseOrder.purchaseOrder')
+                    ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
