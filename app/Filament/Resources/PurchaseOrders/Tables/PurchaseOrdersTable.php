@@ -39,7 +39,7 @@ class PurchaseOrdersTable
                             case PurchaseOrderStatus::Rejected:
                             case PurchaseOrderStatus::Cancelled:
                                 return 'danger';
-                            case PurchaseOrderStatus::Completed:
+                            case PurchaseOrderStatus::Closed:
                                 return 'success';
                             default:
                                 return 'info';

@@ -75,7 +75,7 @@ class PurchaseOrder extends Model
         );
 
         $newStatus = match (true) {
-            $allFulfilled => PurchaseOrderStatus::Completed,
+            $allFulfilled => PurchaseOrderStatus::Closed,
             $anyReceived => PurchaseOrderStatus::PartiallyReceived,
             default => PurchaseOrderStatus::Approved,
         };
