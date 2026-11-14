@@ -11,10 +11,12 @@ class GoodsReceiptInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('purchaseOrder.id')
+                TextEntry::make('purchaseOrder.purchaseOrder')
                     ->label('Purchase order'),
-                TextEntry::make('received_by')
-                    ->numeric(),
+                TextEntry::make('purchaseOrder.supplier.company_name')
+                    ->label('Supplier'),
+                TextEntry::make('receivedBy.name')
+                    ->label('Reeived by'),
                 TextEntry::make('received_date')
                     ->date(),
                 TextEntry::make('remarks')
