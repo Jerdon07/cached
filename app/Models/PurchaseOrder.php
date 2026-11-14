@@ -62,24 +62,29 @@ class PurchaseOrder extends Model
             return;
         }
 
+        // Sum the quantity of the received goods
         $items = $this->items()
             ->withSum('goodsReceiptItems as received_quantity', 'quantity_received')
             ->get();
 
+        // Check if there's a received quantity of goods
         $anyReceived = $items->contains(
             fn (PurchaseOrderItem $item): bool => bccomp((string) ($item->received_quantity ?? 0), '0', 3) === 1
         );
 
+        // Check if the received quantity is equal to the ordered quantity
         $allFulfilled = $items->isNotEmpty() &&  $items->every(
-            fn (PurchaseOrderItem $item): bool =>bccomp((string) ($item->received_quantity ?? 0), (string) $item->quantity, 3) >= 0
+            fn (PurchaseOrderItem $item): bool => bccomp((string) ($item->received_quantity ?? 0), (string) $item->quantity, 3) >= 0
         );
 
+        // Update status depending on the result
         $newStatus = match (true) {
             $allFulfilled => PurchaseOrderStatus::Closed,
             $anyReceived => PurchaseOrderStatus::PartiallyReceived,
             default => PurchaseOrderStatus::Approved,
         };
 
+        // Update only if the current status is not the new status
         if ($newStatus !== $this->status) {
             $this->update(['status' => $newStatus]);
         }
