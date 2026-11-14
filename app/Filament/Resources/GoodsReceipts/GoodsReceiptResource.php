@@ -6,6 +6,7 @@ use App\Filament\Resources\GoodsReceipts\Pages\CreateGoodsReceipt;
 use App\Filament\Resources\GoodsReceipts\Pages\EditGoodsReceipt;
 use App\Filament\Resources\GoodsReceipts\Pages\ListGoodsReceipts;
 use App\Filament\Resources\GoodsReceipts\Pages\ViewGoodsReceipt;
+use App\Filament\Resources\GoodsReceipts\RelationManagers\ItemsRelationManager;
 use App\Filament\Resources\GoodsReceipts\Schemas\GoodsReceiptForm;
 use App\Filament\Resources\GoodsReceipts\Schemas\GoodsReceiptInfolist;
 use App\Filament\Resources\GoodsReceipts\Tables\GoodsReceiptsTable;
@@ -40,7 +41,7 @@ class GoodsReceiptResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ItemsRelationManager::class,
         ];
     }
 
