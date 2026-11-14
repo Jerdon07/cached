@@ -76,6 +76,8 @@ class ReceiveGoodsAction {
                         'quantity_received' => $itemData['quantity_received'],
                     ]);
                 }
+
+                $record->syncReceivingStatus();
             });
     }
 }
