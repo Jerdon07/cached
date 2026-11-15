@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Permission;
 use App\Models\Role;
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class WarehouseStaffPermissionSeeder extends Seeder
@@ -21,12 +19,12 @@ class WarehouseStaffPermissionSeeder extends Seeder
 
                 'view_any_purchase_order_items',
                 'view_purchase_order_items',
-                
+
                 'view_any_goods_receipts',
                 'view_goods_receipts',
                 'create_goods_receipts',
                 'update_goods_receipts',
-                'view_any_goods_receipt_items'
+                'view_any_goods_receipt_items',
             ])->pluck('id')
         );
     }

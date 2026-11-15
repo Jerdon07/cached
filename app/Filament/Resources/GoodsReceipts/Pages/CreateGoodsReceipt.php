@@ -4,7 +4,6 @@ namespace App\Filament\Resources\GoodsReceipts\Pages;
 
 use App\Filament\Resources\GoodsReceipts\GoodsReceiptResource;
 use Filament\Resources\Pages\CreateRecord;
-use Override;
 
 class CreateGoodsReceipt extends CreateRecord
 {

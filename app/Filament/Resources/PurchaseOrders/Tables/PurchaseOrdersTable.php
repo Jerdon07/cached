@@ -17,7 +17,6 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -80,7 +79,7 @@ class PurchaseOrdersTable
                     ->query(fn (Builder $query) => $query->where('created_by', '=', auth()->user()->id)),
                 Filter::make('approved_by_me')
                     ->visible(fn () => auth()->user()->hasPermissionTo('approve_purchase_orders'))
-                    ->query(fn (Builder $query) => $query->where('approved_by', auth()->id()))
+                    ->query(fn (Builder $query) => $query->where('approved_by', auth()->id())),
             ])
             ->recordActions([
                 ActionGroup::make([
@@ -91,7 +90,7 @@ class PurchaseOrdersTable
                         ->authorize('reject')
                         ->requiresConfirmation()
                         ->action(fn (PurchaseOrder $record) => $record->update([
-                            'status' => PurchaseOrderStatus::Rejected
+                            'status' => PurchaseOrderStatus::Rejected,
                         ])),
                     ReceiveGoodsAction::make(),
                     Action::make('cancel')
@@ -100,7 +99,7 @@ class PurchaseOrdersTable
                         ->color('danger')
                         ->requiresConfirmation()
                         ->action(fn (PurchaseOrder $record) => $record->update([
-                            'status' => PurchaseOrderStatus::Cancelled
+                            'status' => PurchaseOrderStatus::Cancelled,
                         ])),
                     ViewAction::make(),
                     EditAction::make(),

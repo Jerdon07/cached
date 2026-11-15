@@ -26,7 +26,7 @@ class PurchaseOrderItemPolicy
     public function update(User $user, PurchaseOrderItem $purchaseOrderItem): bool
     {
         return $user->hasPermissionTo('update_purchase_order_items') && (
-            $purchaseOrderItem->purchaseOrder->status === PurchaseOrderStatus::Draft 
+            $purchaseOrderItem->purchaseOrder->status === PurchaseOrderStatus::Draft
                 || $purchaseOrderItem->purchaseOrder->status === PurchaseOrderStatus::Pending
         );
     }

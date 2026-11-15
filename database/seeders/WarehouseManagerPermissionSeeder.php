@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Permission;
 use App\Models\Role;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class WarehouseManagerPermissionSeeder extends Seeder
@@ -41,7 +40,7 @@ class WarehouseManagerPermissionSeeder extends Seeder
                 'update_any_warehouse_locations',
                 'restore_warehouse_locations',
                 'restore_any_warehouse_locations',
-                
+
             ])->pluck('id')
         );
     }

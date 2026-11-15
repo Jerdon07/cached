@@ -73,7 +73,7 @@ class PurchaseOrder extends Model
         );
 
         // Check if the received quantity is equal to the ordered quantity
-        $allFulfilled = $items->isNotEmpty() &&  $items->every(
+        $allFulfilled = $items->isNotEmpty() && $items->every(
             fn (PurchaseOrderItem $item): bool => bccomp((string) ($item->received_quantity ?? 0), (string) $item->quantity, 3) >= 0
         );
 

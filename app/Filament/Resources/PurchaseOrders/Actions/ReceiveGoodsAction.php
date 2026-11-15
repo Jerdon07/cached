@@ -19,18 +19,18 @@ use Filament\Support\Icons\Heroicon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
-class ReceiveGoodsAction {
+class ReceiveGoodsAction
+{
     public static function make(): Action
     {
         return Action::make('receive')
             ->label('Receive Goods')
             ->icon(Heroicon::Cube)
             ->color('success')
-            ->visible(fn (PurchaseOrder $record): bool => 
-                (
-                    $record->status === PurchaseOrderStatus::Approved
-                    || $record->status === PurchaseOrderStatus::PartiallyReceived
-                ) && Gate::allows('create', GoodsReceipt::class)
+            ->visible(fn (PurchaseOrder $record): bool => (
+                $record->status === PurchaseOrderStatus::Approved
+                || $record->status === PurchaseOrderStatus::PartiallyReceived
+            ) && Gate::allows('create', GoodsReceipt::class)
             )
             ->mountUsing(function (Schema $form, PurchaseOrder $record) {
                 $record->load('items.product');
@@ -44,6 +44,7 @@ class ReceiveGoodsAction {
                 $form->fill([
                     'items' => $record->items->map(function ($item) use ($receivedQuantities) {
                         $total_received = $receivedQuantities->get($item->id, 0);
+
                         return [
                             'purchase_order_item_id' => $item->id,
                             'product_name' => $item->product->name,
@@ -51,7 +52,7 @@ class ReceiveGoodsAction {
                             'total_quantity_received' => $total_received,
                             'quantity_received' => max(0, $item->quantity - $total_received),
                         ];
-                    })
+                    }),
                 ]);
             })
             ->schema([
@@ -70,13 +71,13 @@ class ReceiveGoodsAction {
                             ->required(function (Get $get): bool {
                                 $promised = (float) $get('quantity_promised');
                                 $alreadyReceived = (float) $get('total_quantity_received');
-                                
-                                return ($promised - $alreadyReceived) > 0 ;
+
+                                return ($promised - $alreadyReceived) > 0;
                             })
                             ->disabled(function (Get $get): bool {
                                 $promised = (float) $get('quantity_promised');
                                 $alreadyReceived = (float) $get('total_quantity_received');
-                                
+
                                 return ($promised - $alreadyReceived) <= 0;
                             }),
                         TextInput::make('quantity_promised')
@@ -94,12 +95,12 @@ class ReceiveGoodsAction {
                             ->disabled(function (Get $get): bool {
                                 $promised = (float) $get('quantity_promised');
                                 $alreadyReceived = (float) $get('total_quantity_received');
-                                
+
                                 return ($promised - $alreadyReceived) <= 0;
                             }),
                     ])
                     ->columns(5),
-                Textarea::make('remarks')
+                Textarea::make('remarks'),
             ])
             ->action(function (PurchaseOrder $record, array $data) {
                 DB::transaction(function () use ($record, $data) {
@@ -109,7 +110,7 @@ class ReceiveGoodsAction {
                         'received_by' => auth()->id(),
                         'remarks' => $data['remarks'] ?? null,
                     ]);
-    
+
                     foreach ($data['items'] as $itemData) {
                         if ($itemData['quantity_received'] ?? null) {
                             $goodsReceipt->items()->create([
@@ -119,7 +120,7 @@ class ReceiveGoodsAction {
                             ]);
                         }
                     }
-    
+
                     $record->syncReceivingStatus();
                 });
             });

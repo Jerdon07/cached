@@ -3,13 +3,10 @@
 namespace Database\Factories;
 
 use App\Models\PurchaseOrder;
-use App\Models\Role;
 use App\Models\Supplier;
 use App\Models\User;
 use App\PurchaseOrderStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
-
-use function Illuminate\Support\weeks;
 
 /**
  * @extends Factory<PurchaseOrder>
@@ -37,7 +34,7 @@ class PurchaseOrderFactory extends Factory
                 fn ($query) => $query
                     ->where('name', 'create_purchase_orders'))
                 ->inRandomOrder()
-                ->value('id')
+                ->value('id'),
         ];
     }
 }
