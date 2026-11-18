@@ -5,8 +5,10 @@ namespace App\Filament\Resources\PurchaseOrders\Actions;
 use App\Models\GoodsReceipt;
 use App\Models\GoodsReceiptItem;
 use App\Models\PurchaseOrder;
+use App\Models\StockMovement;
 use App\Models\WarehouseLocation;
 use App\PurchaseOrderStatus;
+use App\StockMovementType;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Repeater;
@@ -47,6 +49,7 @@ class ReceiveGoodsAction
 
                         return [
                             'purchase_order_item_id' => $item->id,
+                            'product_id' => $item->product_id,
                             'product_name' => $item->product->name,
                             'quantity_promised' => $item->quantity,
                             'total_quantity_received' => $total_received,
@@ -60,6 +63,7 @@ class ReceiveGoodsAction
                     ->label('Goods Receipt Items')
                     ->schema([
                         Hidden::make('purchase_order_item_id'),
+                        Hidden::make('product_id'),
 
                         TextInput::make('product_name')
                             ->label('Product')
@@ -98,6 +102,8 @@ class ReceiveGoodsAction
 
                                 return ($promised - $alreadyReceived) <= 0;
                             }),
+                        Textarea::make('notes')
+                            ->columnSpanFull(),
                     ])
                     ->columns(5),
                 Textarea::make('remarks'),
@@ -117,6 +123,15 @@ class ReceiveGoodsAction
                                 'purchase_order_item_id' => $itemData['purchase_order_item_id'],
                                 'warehouse_location_id' => $itemData['warehouse_location_id'],
                                 'quantity_received' => $itemData['quantity_received'],
+                            ]);
+
+                            StockMovement::create([
+                                'product_id' => $itemData['product_id'],
+                                'warehouse_location_id' => $itemData['warehouse_location_id'],
+                                'performed_by' => auth()->id(),
+                                'movement_type' => StockMovementType::TransferIn,
+                                'quantity' => $itemData['quantity_received'],
+                                'notes' => $itemData['notes'],
                             ]);
                         }
                     }
