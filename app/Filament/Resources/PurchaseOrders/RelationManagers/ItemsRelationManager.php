@@ -47,6 +47,7 @@ class ItemsRelationManager extends RelationManager
                         $set('unit_cost', $unit_cost);
                     }),
                 TextInput::make('quantity')
+                    ->label('Ordered Quantity')
                     ->numeric()
                     ->required()
                     ->suffix(function (Get $get): ?string {
@@ -71,9 +72,28 @@ class ItemsRelationManager extends RelationManager
             ->columns([
                 TextColumn::make('product.name')
                     ->searchable(),
-                TextColumn::make('quantity'),
+                TextColumn::make('quantity')
+                    ->label('Ordered Quantity')
+                    ->numeric(),
                 TextColumn::make('unit_cost')
                     ->prefix('₱'),
+                TextColumn::make('goods_receipt_items_sum_quantity_received')
+                    ->sum('goodsReceiptItems', 'quantity_received')
+                    ->label('Arrived Quantity')
+                    ->numeric(),
+                TextColumn::make('status')
+                    ->label('Status')
+                    ->getStateUsing(function ($record) {
+                        $ordered = $record->quantity ?? 0;
+                        $received = $record->goods_receipt_items_sum_quantity_received ?? 0;
+
+                        return $received >= $ordered ? 'Complete' : 'Incomplete';
+                    })
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'Complete' => 'success',
+                        'Incomplete' => 'warning',
+                    }),
             ])
             ->filters([
                 //
