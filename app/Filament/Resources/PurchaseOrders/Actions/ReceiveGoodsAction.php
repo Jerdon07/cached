@@ -20,6 +20,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\ValidationException;
 
 class ReceiveGoodsAction
 {
@@ -95,6 +96,13 @@ class ReceiveGoodsAction
                         TextInput::make('quantity_received')
                             ->label('Quantity Received')
                             ->numeric()
+                            ->maxValue(fn (Get $get): float =>
+                                max(
+                                    0,
+                                    (float) $get('quantity_promised')
+                                    - (float) $get('total_quantity_received')
+                                )
+                            )
                             ->required()
                             ->disabled(function (Get $get): bool {
                                 $promised = (float) $get('quantity_promised');
@@ -118,11 +126,32 @@ class ReceiveGoodsAction
                     ]);
 
                     foreach ($data['items'] as $itemData) {
+                        $purchaseOrderItem = $record->items()
+                            ->findOrFail($itemData['purchase_order_item_id']);
+                        
+                        $totalReceived = GoodsReceiptItem::query()
+                            ->where('purchase_order_item_id', $purchaseOrderItem->id)
+                            ->sum('quantity_received');
+
+                        $remainingQuantity = $purchaseOrderItem->quantity - $totalReceived;
+
+                        $quantityToReceive = (float) ($itemData['quantity_received'] ?? 0);
+
+                        if ($quantityToReceive > $remainingQuantity) {
+                            throw ValidationException::withMessages([
+                                'items' => "The received quantity for {$purchaseOrderItem->product->name} exceeds the remaining quantity of {$remainingQuantity}.",
+                            ]);
+                        }
+
+                        if ($quantityToReceive <= 0) {
+                            continue;
+                        }
+
                         if ($itemData['quantity_received'] ?? null) {
                             $goodsReceipt->items()->create([
                                 'purchase_order_item_id' => $itemData['purchase_order_item_id'],
                                 'warehouse_location_id' => $itemData['warehouse_location_id'],
-                                'quantity_received' => $itemData['quantity_received'],
+                                'quantity_received' => $quantityToReceive,
                             ]);
 
                             StockMovement::create([
@@ -130,8 +159,8 @@ class ReceiveGoodsAction
                                 'warehouse_location_id' => $itemData['warehouse_location_id'],
                                 'performed_by' => auth()->id(),
                                 'movement_type' => StockMovementType::TransferIn,
-                                'quantity' => $itemData['quantity_received'],
-                                'notes' => $itemData['notes'],
+                                'quantity' => $quantityToReceive,
+                                'notes' => $itemData['notes'] ?? null,
                             ]);
                         }
                     }
