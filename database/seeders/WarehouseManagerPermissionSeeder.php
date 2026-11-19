@@ -14,15 +14,23 @@ class WarehouseManagerPermissionSeeder extends Seeder
 
         $manager->permissions()->sync(
             Permission::whereIn('name', [
+                /* PurchaseOrder */
                 'view_purchase_orders',
                 'view_any_purchase_orders',
 
+                /* PurchaseOrderItem */
                 'view_purchase_order_items',
                 'view_any_purchase_order_items',
 
-                'view_any_goods_receipt_items',
-                'update_goods_receipt_items',
+                /* GoodsReceipt */
+                'view_any_goods_receipts',
+                'view_goods_receipts',
 
+                /* GoodsReceiptItem */
+                'view_any_goods_receipt_items',
+                'view_goods_receipt_items',
+
+                /* Warehouse */
                 'view_warehouses',
                 'view_any_warehouses',
                 'create_warehouses',
@@ -32,6 +40,7 @@ class WarehouseManagerPermissionSeeder extends Seeder
                 'restore_warehouses',
                 'restore_any_warehouses',
 
+                /* WarehouseLocation */
                 'view_warehouse_locations',
                 'view_any_warehouse_locations',
                 'create_warehouse_locations',
@@ -41,6 +50,9 @@ class WarehouseManagerPermissionSeeder extends Seeder
                 'restore_warehouse_locations',
                 'restore_any_warehouse_locations',
 
+                /* StockMovement */
+                'view_any_stock_movements',
+                'view_stock_movements',
             ])->pluck('id')
         );
     }
