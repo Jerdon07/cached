@@ -36,13 +36,15 @@ class InventoryAdjustmentPolicy
     public function approve(User $user, InventoryAdjustment $inventoryAdjustment): bool
     {
         return $user->hasPermissionTo('approve_inventory_adjustments')
-            && $inventoryAdjustment->status === InventoryAdjustmentStatus::Pending;
+            && $inventoryAdjustment->status === InventoryAdjustmentStatus::Pending
+            && $inventoryAdjustment->created_by !== $user->id;
     }
 
     public function reject(User $user, InventoryAdjustment $inventoryAdjustment): bool
     {
         return $user->hasPermissionTo('reject_inventory_adjustments')
-            && $inventoryAdjustment->status === InventoryAdjustmentStatus::Pending;
+            && $inventoryAdjustment->status === InventoryAdjustmentStatus::Pending
+            && $inventoryAdjustment->created_by !== $user->id;
     }
 
     public function delete(User $user, InventoryAdjustment $inventoryAdjustment): bool
