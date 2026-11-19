@@ -43,12 +43,6 @@ class PurchasingOfficerPermissionSeeder extends Seeder
                 'view_any_goods_receipts',
                 'view_goods_receipts',
 
-                'view_any_warehouses',
-                'view_warehouses',
-
-                'view_any_warehouse_locations',
-                'view_warehouse_locations',
-
                 'view_any_stock_movements',
                 'view_stock_movements',
             ])->pluck('id')
