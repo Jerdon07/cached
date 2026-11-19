@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\PurchaseOrder;
 use App\Models\PurchaseOrderItem;
 use App\Models\User;
 use App\PurchaseOrderStatus;
@@ -18,9 +19,12 @@ class PurchaseOrderItemPolicy
         return $user->hasPermissionTo('view_purchase_order_items');
     }
 
-    public function create(User $user): bool
+    public function create(User $user, PurchaseOrder $purchaseOrder): bool
     {
-        return $user->hasPermissionTo('create_purchase_order_items');
+        return $user->hasPermissionTo('create_purchase_order_items')
+            && in_array($purchaseOrder->status, [
+                PurchaseOrderStatus::Draft, PurchaseOrderStatus::Pending
+            ]);
     }
 
     public function update(User $user, PurchaseOrderItem $purchaseOrderItem): bool
@@ -33,6 +37,9 @@ class PurchaseOrderItemPolicy
 
     public function delete(User $user, PurchaseOrderItem $purchaseOrderItem): bool
     {
-        return $user->hasPermissionTo('delete_purchase_order_items');
+        return $user->hasPermissionTo('delete_purchase_order_items') && (
+            $purchaseOrderItem->purchaseOrder->status === PurchaseOrderStatus::Draft
+                || $purchaseOrderItem->purchaseOrder->status === PurchaseOrderStatus::Pending
+        );
     }
 }

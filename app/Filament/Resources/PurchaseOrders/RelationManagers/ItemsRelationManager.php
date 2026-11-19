@@ -4,6 +4,8 @@ namespace App\Filament\Resources\PurchaseOrders\RelationManagers;
 
 use App\Models\Product;
 use App\Models\ProductSupplier;
+use App\Models\PurchaseOrderItem;
+use Filament\Actions\ActionGroup;
 use Filament\Actions\AssociateAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
@@ -20,6 +22,9 @@ use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Gate;
+use Override;
 
 class ItemsRelationManager extends RelationManager
 {
@@ -99,19 +104,27 @@ class ItemsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                CreateAction::make(),
-                AssociateAction::make(),
+                CreateAction::make()
+                    ->label('Add Item'),
             ])
             ->recordActions([
-                EditAction::make(),
-                DissociateAction::make(),
-                DeleteAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DissociateBulkAction::make(),
-                    DeleteBulkAction::make(),
+                ActionGroup::make([
+                    EditAction::make(),
+                    DeleteAction::make(),
                 ]),
             ]);
+    }
+
+    public function isReadOnly(): bool
+    {
+        return false;
+    }
+
+    public function getCreateAuthorizationResponse(): Response
+    {
+        return Gate::inspect('create', [
+            PurchaseOrderItem::class,
+            $this->getOwnerRecord(),
+        ]);
     }
 }
