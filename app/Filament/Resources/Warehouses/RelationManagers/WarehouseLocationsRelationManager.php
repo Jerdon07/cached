@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Warehouses\RelationManagers;
 
+use App\Filament\Resources\WarehouseLocations\WarehouseLocationResource;
 use App\Models\StockMovement;
 use App\Models\WarehouseLocation;
 use Filament\Actions\ActionGroup;
@@ -33,6 +34,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class WarehouseLocationsRelationManager extends RelationManager
 {
     protected static string $relationship = 'WarehouseLocations';
+
+    protected static ?string $relatedResource = WarehouseLocationResource::class;
 
     public function form(Schema $schema): Schema
     {
