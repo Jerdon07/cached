@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Products\Tables;
 
+use App\Models\Product;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
@@ -63,7 +64,8 @@ class ProductsTable
 
                 ToggleColumn::make('is_active')
                     ->onColor('success')
-                    ->offColor('danger'),
+                    ->offColor('danger')
+                    ->disabled(fn (Product $record): bool => ! auth()->user()->can('update', $record)),
 
                 TextColumn::make('deleted_at')
                     ->dateTime()
