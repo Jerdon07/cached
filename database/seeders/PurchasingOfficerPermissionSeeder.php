@@ -19,13 +19,6 @@ class PurchasingOfficerPermissionSeeder extends Seeder
                 'view_any_categories',
                 'view_categories',
 
-                'view_any_suppliers',
-                'view_suppliers',
-                'create_suppliers',
-                'update_suppliers',
-                'delete_suppliers',
-                'delete_any_suppliers',
-
                 'view_any_purchase_orders',
                 'view_purchase_orders',
                 'create_purchase_orders',
@@ -42,9 +35,6 @@ class PurchasingOfficerPermissionSeeder extends Seeder
 
                 'view_any_goods_receipts',
                 'view_goods_receipts',
-
-                'view_any_stock_movements',
-                'view_stock_movements',
             ])->pluck('id')
         );
     }

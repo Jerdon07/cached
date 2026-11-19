@@ -25,6 +25,9 @@ class WarehouseStaffPermissionSeeder extends Seeder
                 'create_goods_receipts',
                 'update_goods_receipts',
                 'view_any_goods_receipt_items',
+
+                'view_any_stock_movements',
+                'view_stock_movements',
             ])->pluck('id')
         );
     }
