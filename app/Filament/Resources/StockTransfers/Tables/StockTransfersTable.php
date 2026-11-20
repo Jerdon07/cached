@@ -4,6 +4,7 @@ namespace App\Filament\Resources\StockTransfers\Tables;
 
 use App\Filament\Resources\StockTransfers\Actions\ApproveStockTransferAction;
 use App\Filament\Resources\StockTransfers\Actions\BeginStockTransferAction;
+use App\Filament\Resources\StockTransfers\Actions\CancelStockTransferAction;
 use App\Filament\Resources\StockTransfers\Actions\RejectStockTransferAction;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\EditAction;
@@ -47,6 +48,7 @@ class StockTransfersTable
                     ApproveStockTransferAction::make(),
                     RejectStockTransferAction::make(),
                     BeginStockTransferAction::make(),
+                    CancelStockTransferAction::make(),
                     EditAction::make(),
                 ]),
             ]);
