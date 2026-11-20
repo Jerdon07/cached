@@ -43,6 +43,14 @@ class WarehouseStaffPermissionSeeder extends Seeder
                 /* StockMovement */
                 'view_any_stock_movements',
                 'view_stock_movements',
+
+                /* StockTransfer */
+                'view_stock_transfers',
+                'view_any_stock_transfers',
+
+                /* StockTransferItem */
+                'view_stock_transfer_items',
+                'view_any_stock_transfer_items',
             ])->pluck('id')
         );
     }

@@ -63,6 +63,13 @@ class WarehouseManagerPermissionSeeder extends Seeder
                 'submit_stock_transfers',
                 'approve_stock_transfers',
                 'reject_stock_transfers',
+
+                /* StockTransferItem */
+                'view_stock_transfer_items',
+                'view_any_stock_transfer_items',
+                'create_stock_transfer_items',
+                'update_stock_transfer_items',
+                'delete_stock_transfer_items',
             ])->pluck('id')
         );
     }
