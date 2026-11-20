@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\StockTransfer;
 use App\Models\User;
+use App\StockTransferStatus;
 
 class StockTransferPolicy
 {
@@ -24,11 +25,24 @@ class StockTransferPolicy
 
     public function update(User $user, StockTransfer $stockTransfer): bool
     {
-        return $user->hasPermissionTo('update_stock_transfers');
+        return $user->hasPermissionTo('update_stock_transfers')
+            && in_array($stockTransfer->status, [
+                StockTransferStatus::Draft,
+                StockTransferStatus::Pending,
+            ]) && $user->id === $stockTransfer->requested_by;
     }
 
-    public function delete(User $user, StockTransfer $stockTransfer): bool
+    public function approve(User $user, StockTransfer $stockTransfer): bool
     {
-        return false;
+        return $user->hasPermissionTo('approve_stock_transfers')
+            && $stockTransfer->status === StockTransferStatus::Pending
+            && $user->id !== $stockTransfer->requested_by;
+    }
+
+    public function reject(User $user, StockTransfer $stockTransfer): bool
+    {
+        return $user->hasPermissionTo('reject_stock_transfers')
+            && $stockTransfer->status === StockTransferStatus::Pending
+            && $user->id !== $stockTransfer->requested_by;
     }
 }
