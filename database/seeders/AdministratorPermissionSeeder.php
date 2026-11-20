@@ -79,6 +79,8 @@ class AdministratorPermissionSeeder extends Seeder
                 'delete_any_stock_transfers',
                 'restore_stock_transfers',
                 'restore_any_stock_transfers',
+                'approve_stock_transfers',
+                'reject_stock_transfers',
 
                 'view_stock_transfer_items',
                 'view_any_stock_transfer_items',
