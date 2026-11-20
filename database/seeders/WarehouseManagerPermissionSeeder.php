@@ -51,8 +51,18 @@ class WarehouseManagerPermissionSeeder extends Seeder
                 'restore_any_warehouse_locations',
 
                 /* StockMovement */
-                'view_any_stock_movements',
                 'view_stock_movements',
+                'view_any_stock_movements',
+
+                /* StockTransfer */
+                'view_stock_transfers',
+                'view_any_stock_transfers',
+                'create_stock_transfers',
+                'update_stock_transfers',
+                'delete_stock_transfers',
+                'submit_stock_transfers',
+                'approve_stock_transfers',
+                'reject_stock_transfers',
             ])->pluck('id')
         );
     }
