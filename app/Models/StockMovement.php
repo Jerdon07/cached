@@ -4,12 +4,15 @@ namespace App\Models;
 
 use App\StockMovementType;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #[Fillable(['product_id', 'warehouse_location_id', 'performed_by', 'movement_type', 'quantity', 'reference_type', 'reference_id', 'notes'])]
 class StockMovement extends Model
 {
+    use HasFactory;
+    
     protected function casts(): array
     {
         return [

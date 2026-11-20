@@ -19,5 +19,7 @@ class StockMovementSeeder extends Seeder
             'performed_by' => 1,
             'notes' => 'The product stock movement for this is sale.',
         ]);
+
+        StockMovement::factory(20)->create();
     }
 }
