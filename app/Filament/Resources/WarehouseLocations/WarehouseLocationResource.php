@@ -7,6 +7,7 @@ use App\Filament\Resources\WarehouseLocations\Pages\EditWarehouseLocation;
 use App\Filament\Resources\WarehouseLocations\Pages\ListWarehouseLocations;
 use App\Filament\Resources\WarehouseLocations\Pages\ViewWarehouseLocation;
 use App\Filament\Resources\WarehouseLocations\Schemas\WarehouseLocationForm;
+use App\Filament\Resources\WarehouseLocations\Schemas\WarehouseLocationInfolist;
 use App\Filament\Resources\WarehouseLocations\Tables\WarehouseLocationsTable;
 use App\Models\WarehouseLocation;
 use BackedEnum;
@@ -29,6 +30,11 @@ class WarehouseLocationResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return WarehouseLocationForm::configure($schema);
+    }
+
+    public static function infolist(Schema $schema): Schema
+    {
+        return WarehouseLocationInfolist::configure($schema);
     }
 
     public static function table(Table $table): Table
