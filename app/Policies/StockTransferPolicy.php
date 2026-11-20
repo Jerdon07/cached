@@ -46,7 +46,7 @@ class StockTransferPolicy
             && $user->id !== $stockTransfer->requested_by;
     }
 
-    public function transfer(User $user, StockTransfer $stockTransfer): bool
+    public function dispatch(User $user, StockTransfer $stockTransfer): bool
     {
         return $user->hasPermissionTo('create_stock_transfers')
             && $stockTransfer->status === StockTransferStatus::Approved
