@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 #[Fillable(['from_warehouse_id', 'to_warehouse_id', 'status', 'requested_by', 'approved_by'])]
 class StockTransfer extends Model
@@ -41,6 +42,11 @@ class StockTransfer extends Model
     public function items(): HasMany
     {
         return $this->hasMany(StockTransferItem::class);
+    }
+
+    public function stockMovements(): MorphMany
+    {
+        return $this->morphMany(StockMovement::class);
     }
 
     public function getTransferNumberAttribute(): string
