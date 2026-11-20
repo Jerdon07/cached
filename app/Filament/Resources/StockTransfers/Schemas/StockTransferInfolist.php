@@ -12,10 +12,14 @@ class StockTransferInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('fromWarehouse.name'),
-                TextEntry::make('toWarehouse.name'),
+                TextEntry::make('fromWarehouse.name')
+                    ->label('From'),
+                TextEntry::make('toWarehouse.name')
+                    ->label('To'),
+                TextEntry::make('transfer_number'),
                 TextEntry::make('status')
                     ->badge(),
+                TextEntry::make('requestedBy.name'),
                 TextEntry::make('approvedBy.name')
                     ->hidden(fn ($record) => $record->status === StockTransferStatus::Pending),
             ]);
