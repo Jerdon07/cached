@@ -96,12 +96,11 @@ class ReceiveGoodsAction
                         TextInput::make('quantity_received')
                             ->label('Quantity Received')
                             ->numeric()
-                            ->maxValue(fn (Get $get): float =>
-                                max(
-                                    0,
-                                    (float) $get('quantity_promised')
-                                    - (float) $get('total_quantity_received')
-                                )
+                            ->maxValue(fn (Get $get): float => max(
+                                0,
+                                (float) $get('quantity_promised')
+                                - (float) $get('total_quantity_received')
+                            )
                             )
                             ->required()
                             ->disabled(function (Get $get): bool {
@@ -128,7 +127,7 @@ class ReceiveGoodsAction
                     foreach ($data['items'] as $itemData) {
                         $purchaseOrderItem = $record->items()
                             ->findOrFail($itemData['purchase_order_item_id']);
-                        
+
                         $totalReceived = GoodsReceiptItem::query()
                             ->where('purchase_order_item_id', $purchaseOrderItem->id)
                             ->sum('quantity_received');

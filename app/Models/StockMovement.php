@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class StockMovement extends Model
 {
     use HasFactory;
-    
+
     protected function casts(): array
     {
         return [

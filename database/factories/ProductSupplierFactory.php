@@ -21,7 +21,7 @@ class ProductSupplierFactory extends Factory
     {
         return [
             'product_id' => Product::query()->inRandomOrder()->value('id'),
-            'supplier_id'=> Supplier::query()->inRandomOrder()->value('id'),
+            'supplier_id' => Supplier::query()->inRandomOrder()->value('id'),
             'supplier_sku' => fake()->sha256(),
             'cost_price' => fake()->numberBetween(1, 100),
             'preferred' => fake()->boolean(20),

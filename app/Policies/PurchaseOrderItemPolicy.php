@@ -23,7 +23,7 @@ class PurchaseOrderItemPolicy
     {
         return $user->hasPermissionTo('create_purchase_order_items')
             && in_array($purchaseOrder->status, [
-                PurchaseOrderStatus::Draft, PurchaseOrderStatus::Pending
+                PurchaseOrderStatus::Draft, PurchaseOrderStatus::Pending,
             ]);
     }
 

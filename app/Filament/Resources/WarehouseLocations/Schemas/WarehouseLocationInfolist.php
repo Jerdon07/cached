@@ -4,7 +4,6 @@ namespace App\Filament\Resources\WarehouseLocations\Schemas;
 
 use App\Models\StockMovement;
 use App\Models\WarehouseLocation;
-use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Tabs;

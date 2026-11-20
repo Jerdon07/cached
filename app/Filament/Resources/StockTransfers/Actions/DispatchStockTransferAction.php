@@ -3,18 +3,14 @@
 namespace App\Filament\Resources\StockTransfers\Actions;
 
 use App\Actions\DispatchStockTransfer;
-use App\Models\Product;
-use App\Models\StockMovement;
 use App\Models\StockTransfer;
 use App\Models\WarehouseLocation;
-use App\StockTransferStatus;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Support\Icons\Heroicon;
-use Illuminate\Support\Facades\DB;
 
 class DispatchStockTransferAction
 {
