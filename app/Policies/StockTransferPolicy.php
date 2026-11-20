@@ -45,4 +45,11 @@ class StockTransferPolicy
             && $stockTransfer->status === StockTransferStatus::Pending
             && $user->id !== $stockTransfer->requested_by;
     }
+
+    public function transfer(User $user, StockTransfer $stockTransfer): bool
+    {
+        return $user->hasPermissionTo('create_stock_transfers')
+            && $stockTransfer->status === StockTransferStatus::Approved
+            && $user->id === $stockTransfer->requested_by;
+    }
 }
