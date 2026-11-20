@@ -46,7 +46,7 @@ class StockTransfer extends Model
 
     public function stockMovements(): MorphMany
     {
-        return $this->morphMany(StockMovement::class);
+        return $this->morphMany(StockMovement::class, 'referenceable');
     }
 
     public function getTransferNumberAttribute(): string
