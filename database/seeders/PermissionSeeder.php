@@ -90,6 +90,7 @@ class PermissionSeeder extends Seeder
             'submit_stock_transfers',
             'approve_stock_transfers',
             'reject_stock_transfers',
+            'receive_stock_transfers',
 
             // Inventory (execution-level actions, distinct from the
             // approval permissions above)
